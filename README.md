@@ -1,6 +1,6 @@
 # Nuts
 
-> Open source releases/downloads server with auto-updater
+> Open source releases/downloads server with auto-updater and GitHub as a backend
 
 This application is a simple release server to download specific or latest version of a desktop application. It uses GitHub releases as a backend, so it can easily be deployed to heroku as a stateless service, it also works for GitHub private repositories (useful to store releases of a closed-source application available on GitHub).
 
