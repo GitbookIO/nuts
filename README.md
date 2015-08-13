@@ -21,11 +21,11 @@ This service requires to be configured using environment variables:
 $ export GITHUB_TOKEN=...
 
 # ID for the GitHub repository
-export GITHUB_REPOSITORY=Username/MyApp
+$ export GITHUB_REPOSITORY=Username/MyApp
 
 # Authentication for the private API
-export API_USERNAME=hello
-export API_PASSWORD=world
+$ export API_USERNAME=hello
+$ export API_PASSWORD=world
 ```
 
 Then start the application using:
