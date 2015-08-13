@@ -78,8 +78,9 @@ app.get('/update', function(req, res, next) {
             "notes": version.notes,
             "pub_date": version.published_at.toISOString()
         });
-    })
-    .fail(next);
+    }, function() {
+        res.status(204);
+    });
 });
 
 // Private API
