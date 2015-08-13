@@ -39,6 +39,8 @@ $ npm start
 
 #### Download urls
 
+Nuts provides urls to access releases assets. These assets are cached on the disk.
+
 * Latest version on detected platform: `http://download.myapp.com/download/latest` or `http://download.myapp.com/download`
 * Latest version on specific platform: `http://download.myapp.com/download/latest/osx` or ``http://download.myapp.com/download/osx`
 * Specific version on detected platform: `http://download.myapp.com/download/1.1.0`
@@ -81,8 +83,8 @@ Get details about specific version:
 GET http://download.myapp.com/api/version/1.1.0
 ```
 
-Get stats about download per platforms:
+Get stats about downloads:
 
 ```
-GET http://download.myapp.com/api/stats/platforms
+GET http://download.myapp.com/api/stats
 ```

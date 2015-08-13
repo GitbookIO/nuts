@@ -134,20 +134,27 @@ app.get('/api/version/:tag', function (req, res, next) {
     }, next);
 });
 
-app.get('/api/stats/platforms', function (req, res, next) {
+app.get('/api/stats', function (req, res, next) {
+    var stats = {
+        total: 0,
+        platforms: {}
+    };
+
     versions.list()
     .then(function(_versions) {
-        var result = {};
-
-        _.each(_versions, function(version) {
+        _.each(_versions, function(version, i) {
             _.each(version.platforms, function(platform, _platformID) {
+                // Increase platform count
                 var platformID = platforms.toType(_platformID);
-                result[platformID] = (result[platformID] || 0) + platform.download_count;
+                stats.platforms[platformID] = (stats.platforms[platformID] || 0) + platform.download_count;
             });
         });
 
-        res.send(result);
-    }, next);
+        stats.total = _.sum(stats.platforms);
+
+        res.send(stats);
+    })
+    .fail(next);
 });
 
 // Error handling
