@@ -17,6 +17,9 @@ $ npm install
 This service requires to be configured using environment variables:
 
 ```
+# Set the port for the service
+$ export PORT=6000
+
 # Access token for the GitHub API (requires permissions to access the repository), you can also use GITHUB_USERNAME and GITHUB_USERNAME
 $ export GITHUB_TOKEN=...
 
@@ -81,5 +84,5 @@ GET http://download.myapp.com/api/version/1.1.0
 Get stats about download per platforms:
 
 ```
-GET http://download.myapp.com/api/stats.platforms
+GET http://download.myapp.com/api/stats/platforms
 ```
