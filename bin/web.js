@@ -140,6 +140,31 @@ app.get('/api/stats/platforms', function (req, res, next) {
     }, next);
 });
 
+// Error handling
+app.use(function(req, res, next) {
+    res.status(404).send("Page not found");
+});
+app.use(function(err, req, res, next) {
+    var msg = err.message || err;
+    var code = 500;
+
+    // Return error
+    res.format({
+        'text/plain': function(){
+            res.status(code).send(msg);
+        },
+        'text/html': function () {
+            res.status(code).send(msg);
+        },
+        'application/json': function (){
+            res.status(code).send({
+                'error': msg,
+                'code': code
+            });
+        }
+    });
+});
+
 var server = app.listen(config.port, function () {
     var host = server.address().address;
     var port = server.address().port;
