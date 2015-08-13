@@ -79,7 +79,7 @@ app.get('/update', function(req, res, next) {
             "pub_date": version.published_at.toISOString()
         });
     }, function() {
-        res.status(204);
+        res.status(204).send('No updates');
     });
 });
 
