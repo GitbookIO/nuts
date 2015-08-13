@@ -1,0 +1,15 @@
+{
+    "name": "Releasers",
+    "description": "Server to make GitHub releases (private) available to download with Squirrel support.",
+    "repository": "https://github.com/SamyPesse/releaser",
+    "website": "https://github.com/SamyPesse/releaser",
+    "keywords": ["releases", "download", "github", "squirrel", "desktop"],
+    "env": {
+        "GITHUB_REPO": {
+            "description": "Repository for the application"
+        },
+        "GITHUB_TOKEN": {
+            "description": "Auth token for GitHub API"
+        }
+    }
+}

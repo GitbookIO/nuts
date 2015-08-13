@@ -1,0 +1,28 @@
+{
+    "name": "releases",
+    "version": "0.0.0",
+    "description": "Server to make GitHub releases (private) available to download with Squirrel support",
+    "homepage": "https://github.com/SamyPesse/betty",
+    "license": "Apache-2.0",
+    "main": "./lib/index.js",
+    "dependencies": {
+        "express": "4.12.3",
+        "lodash": "3.7.0",
+        "q": "1.2.0",
+        "body-parser": "1.12.3",
+        "octonode": "0.7.1"
+    },
+    "bugs": {
+        "url": "https://github.com/SamyPesse/releaser/issues"
+    },
+    "authors": [
+        {
+            "name": "Samy Pesse",
+            "email": "samypesse@gmail.com"
+        }
+    ],
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/SamyPesse/releaser.git"
+    }
+}
