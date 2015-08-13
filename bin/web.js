@@ -2,7 +2,7 @@ var express = require('express');
 var useragent = require('express-useragent')
 
 var config = require('../lib/config');
-var github = require('../lib/github');
+var versions = require('../lib/versions');
 var download = require('../lib/download');
 
 var app = express();
@@ -14,10 +14,13 @@ app.get('/', function (req, res) {
 app.use(useragent.express());
 
 // Download links
-app.get('/download/version/:tag/:platform', function (req, res, next) {
+app.get('/download/version/:tag/:platform?', function (req, res, next) {
     var platform = req.params.platform;
 
-    github.version(req.params.tag)
+    versions.resolve({
+        platform: platform,
+        tag: req.params.tag
+    })
     .then(function(version) {
         var platformVersion = version.platforms[platform];
         if (!platformVersion) throw new Error("No download available for platform "+platform+" for version "+version.tag);
@@ -30,16 +33,16 @@ app.get('/download/version/:tag/:platform', function (req, res, next) {
 
 // Private API
 app.get('/api/versions', function (req, res, next) {
-    github.versions()
-    .then(function(versions) {
-        res.send(versions);
+    versions.list()
+    .then(function(results) {
+        res.send(results);
     }, next);
 });
 
 app.get('/api/version/:tag', function (req, res, next) {
-    github.version(req.params.tag)
-    .then(function(version) {
-        res.send(version);
+    versions.get(req.params.tag)
+    .then(function(result) {
+        res.send(result);
     }, next);
 });
 
