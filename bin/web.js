@@ -4,6 +4,7 @@ var url = require('url');
 var express = require('express');
 var useragent = require('express-useragent');
 var basicAuth = require('basic-auth');
+var stores = require('stores');
 
 var config = require('../lib/config');
 var versions = require('../lib/versions');
@@ -20,7 +21,7 @@ app.get('/', function (req, res) {
 });
 
 // Download links
-app.get('/download/version/:tag/:platform?', function (req, res, next) {
+app.get('/download/version/:tag/:platform?', stores(stores.FileStore, function(req, slot, next) {
     var platform = req.params.platform;
 
     // Detect platform from useragent
@@ -41,10 +42,12 @@ app.get('/download/version/:tag/:platform?', function (req, res, next) {
         var platformVersion = version.platforms[platform];
         if (!platformVersion) throw new Error("No download available for platform "+platform+" for version "+version.tag);
 
-        return download.stream(platformVersion.download_url, res);
+        return download.stream(platformVersion.download_url).pipe(slot);
     })
     .fail(next);
-});
+}, {
+    root: config.versions.cache
+}));
 
 app.get('/download/:platform?', function (req, res, next) {
     res.redirect('/download/version/latest'+(req.params.platform? '/'+req.params.platform : ''));
