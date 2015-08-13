@@ -1,4 +1,6 @@
 var _ = require('lodash');
+var Q = require('q');
+var url = require('url');
 var express = require('express');
 var useragent = require('express-useragent');
 var basicAuth = require('basic-auth');
@@ -10,11 +12,11 @@ var download = require('../lib/download');
 
 var app = express();
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
-
 app.use(useragent.express());
+
+app.get('/', function (req, res) {
+    res.redirect('/download/version/latest');
+});
 
 // Download links
 app.get('/download/version/:tag/:platform?', function (req, res, next) {
@@ -47,6 +49,37 @@ app.get('/download/:platform?', function (req, res, next) {
     res.redirect('/download/version/latest'+(req.params.platform? '/'+req.params.platform : ''));
 });
 
+// Auto-updater
+app.get('/update', function(req, res, next) {
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    var platform, tag;
+
+    Q()
+    .then(function() {
+        if (!req.query.version) throw new Error('Requires "version" parameter');
+        if (!req.query.platform) throw new Error('Requires "platform" parameter');
+
+        platform = platforms.detect(req.query.platform);
+        tag = req.query.version;
+
+        return versions.resolve({
+            tag: '>='+req.query.version,
+            platform: platform
+        });
+    })
+    .then(function(version) {
+        var status = 200;
+        if (version.tag == tag) status = 204;
+
+        res.status(status).send({
+            "url": url.resolve(fullUrl, "/download/version/"+version.tag+"/"+platform),
+            "name": version.tag,
+            "notes": version.notes,
+            "pub_date": version.published_at.toISOString()
+        });
+    })
+    .fail(next);
+});
 
 // Private API
 if (config.api.username && config.api.password) {
