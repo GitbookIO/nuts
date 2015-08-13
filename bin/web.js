@@ -55,32 +55,38 @@ app.get('/update', function(req, res, next) {
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
     var platform, tag;
 
-    Q()
-    .then(function() {
+    Q().then(function() {
         if (!req.query.version) throw new Error('Requires "version" parameter');
         if (!req.query.platform) throw new Error('Requires "platform" parameter');
 
         platform = platforms.detect(req.query.platform);
         tag = req.query.version;
 
-        return versions.resolve({
+        return versions.filter({
             tag: '>='+req.query.version,
             platform: platform
         });
     })
-    .then(function(version) {
-        var status = 200;
-        if (version.tag == tag) status = 204;
+    .then(function(versions) {
+        var latest = _.first(versions);
+        if (!latest || latest.tag == tag) return res.status(204).send('No updates');
 
-        res.status(status).send({
-            "url": url.resolve(fullUrl, "/download/version/"+version.tag+"/"+platform),
-            "name": version.tag,
-            "notes": version.notes,
-            "pub_date": version.published_at.toISOString()
+        var releaseNotes = _.chain(versions)
+            .pluck('notes')
+            .compact()
+            .reduce(function(prev, value) {
+                return prev + '\n' + value;
+            }, "")
+            .value();
+
+        res.status(200).send({
+            "url": url.resolve(fullUrl, "/download/version/"+latest.tag+"/"+platform),
+            "name": latest.tag,
+            "notes": releaseNotes,
+            "pub_date": latest.published_at.toISOString()
         });
-    }, function() {
-        res.status(204).send('No updates');
-    });
+    })
+    .fail(next);
 });
 
 // Private API
