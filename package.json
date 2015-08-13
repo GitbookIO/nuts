@@ -27,5 +27,8 @@
     "repository": {
         "type" : "git",
         "url" : "https://github.com/SamyPesse/releaser.git"
+    },
+    "scripts": {
+        "start": "node bin/web.js"
     }
 }

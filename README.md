@@ -1,8 +1,38 @@
 # releaser
 
-Server to make GitHub releases (private) available to download with Squirrel support.
+> Open source release/application download with auto-updater
+
+This application is a simple release server to download specific or latest version of a desktop application. It uses GitHub releases as a backend, so it can easily be deployed to heroku as a stateless service, it also works for GitHub private repositories (useful to store releases of a closed-source application available on GitHub).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+#### Deploy it / Start it
+
+Install dependencies using:
+
+```
+$ npm install
+```
+
+This service requires to be configured using environment variables:
+
+```
+# Access token for the GitHub API (requires permissions to access the repository), you can also use GITHUB_USERNAME and GITHUB_USERNAME
+$ export GITHUB_TOKEN=...
+
+# ID for the GitHub repository
+export GITHUB_REPOSITORY=Username/MyApp
+
+# Authentication for the private API
+export API_USERNAME=hello
+export API_PASSWORD=world
+```
+
+Then start the application using:
+
+```
+$ npm start
+```
 
 #### Download urls
 
@@ -23,7 +53,7 @@ This server provides an endpoint for [Squirrel auto-updater](https://github.com/
 
 This url requires different query parameters to return a correct version: `version` and `platform`.
 
-For exampel with Electron:
+For example with Electron:
 
 ```js
 var app = require('app');
