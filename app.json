@@ -10,6 +10,12 @@
         },
         "GITHUB_TOKEN": {
             "description": "Auth token for GitHub API"
+        },
+        "API_USERNAME": {
+            "description": "Username for private API access"
+        },
+        "API_PASSWORD": {
+            "description": "Password for private API access"
         }
     }
 }

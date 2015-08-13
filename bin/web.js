@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var express = require('express');
-var useragent = require('express-useragent')
+var useragent = require('express-useragent');
+var basicAuth = require('basic-auth');
 
 var config = require('../lib/config');
 var versions = require('../lib/versions');
@@ -48,6 +49,27 @@ app.get('/download/:platform?', function (req, res, next) {
 
 
 // Private API
+if (config.api.username && config.api.password) {
+    app.use('/api', function (req, res, next) {
+        function unauthorized(res) {
+            res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+            return res.send(401);
+        };
+
+        var user = basicAuth(req);
+
+        if (!user || !user.name || !user.pass) {
+            return unauthorized(res);
+        };
+
+        if (user.name === config.api.username && user.pass === config.api.password) {
+            return next();
+        } else {
+            return unauthorized(res);
+        };
+    });
+}
+
 app.get('/api/versions', function (req, res, next) {
     versions.list()
     .then(function(results) {
