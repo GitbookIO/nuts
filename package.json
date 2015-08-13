@@ -1,8 +1,8 @@
 {
-    "name": "releases",
+    "name": "nuts",
     "version": "0.0.0",
     "description": "Server to make GitHub releases (private) available to download with Squirrel support",
-    "homepage": "https://github.com/SamyPesse/betty",
+    "homepage": "https://github.com/GitbookIO/nuts",
     "license": "Apache-2.0",
     "main": "./lib/index.js",
     "dependencies": {
@@ -16,7 +16,7 @@
         "basic-auth": "1.0.3"
     },
     "bugs": {
-        "url": "https://github.com/SamyPesse/releaser/issues"
+        "url": "https://github.com/GitbookIO/nuts/issues"
     },
     "authors": [
         {
@@ -26,7 +26,7 @@
     ],
     "repository": {
         "type" : "git",
-        "url" : "https://github.com/SamyPesse/releaser.git"
+        "url" : "https://github.com/GitbookIO/nuts.git"
     },
     "scripts": {
         "start": "node bin/web.js"

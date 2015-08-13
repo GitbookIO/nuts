@@ -1,15 +1,15 @@
 {
-    "name": "Releasers",
-    "description": "Server to make GitHub releases (private) available to download with Squirrel support.",
-    "repository": "https://github.com/SamyPesse/releaser",
-    "website": "https://github.com/SamyPesse/releaser",
+    "name": "Nuts",
+    "description": "Open source releases/downloads server with auto-updater",
+    "repository": "https://github.com/GitbookIO/nuts",
+    "website": "https://github.com/GitbookIO/nuts",
     "keywords": ["releases", "download", "github", "squirrel", "desktop"],
     "env": {
         "GITHUB_REPO": {
-            "description": "Repository for the application"
+            "description": "Repository for the application's releases"
         },
         "GITHUB_TOKEN": {
-            "description": "Auth token for GitHub API"
+            "description": "Access token for GitHub API"
         },
         "API_USERNAME": {
             "description": "Username for private API access"
