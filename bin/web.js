@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var express = require('express');
 var useragent = require('express-useragent')
 
@@ -57,6 +58,22 @@ app.get('/api/versions', function (req, res, next) {
 app.get('/api/version/:tag', function (req, res, next) {
     versions.get(req.params.tag)
     .then(function(result) {
+        res.send(result);
+    }, next);
+});
+
+app.get('/api/stats/platforms', function (req, res, next) {
+    versions.list()
+    .then(function(_versions) {
+        var result = {};
+
+        _.each(_versions, function(version) {
+            _.each(version.platforms, function(platform, _platformID) {
+                var platformID = platforms.toType(_platformID);
+                result[platformID] = (result[platformID] || 0) + platform.download_count;
+            });
+        });
+
         res.send(result);
     }, next);
 });
