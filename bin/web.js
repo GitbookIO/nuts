@@ -8,10 +8,19 @@ app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
-app.get('/versions', function (req, res, next) {
+
+// API
+app.get('/api/versions', function (req, res, next) {
     github.versions()
     .then(function(versions) {
         res.send(versions);
+    }, next);
+});
+
+app.get('/api/version/:tag', function (req, res, next) {
+    github.version(req.params.tag)
+    .then(function(version) {
+        res.send(version);
     }, next);
 });
 
