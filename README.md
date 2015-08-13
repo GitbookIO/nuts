@@ -17,6 +17,21 @@ Platforms can be detected from user-agent and are normalized to values: `osx`, `
 
 Non-prefixed platform will be resolve to 32 bits.
 
+#### Auto-updater / Squirrel
+
+This server provides an endpoint for [Squirrel auto-updater](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md): `http://download.myapp.com/update`.
+
+This url requires different query parameters to return a correct version: `version`, `platform` and `arch`.
+
+For exampel with electron:
+
+```js
+var app = require('app');
+var os = require('os');
+var autoUpdater = require('auto-updater');
+autoUpdater.setFeedUrl('http://download.myapp.com/update?version=' + app.getVersion() + '&platform='+os.platform() + '&arch='+os.arch());
+```
+
 #### Private API
 
 A private API is available to access more infos about releases and stats. This API can be protected by HTTP basic auth (username/password) using configuration `API_USERNAME` and `API_PASSWORD`.
