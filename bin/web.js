@@ -11,6 +11,7 @@ var platforms = require('../lib/platforms');
 var download = require('../lib/download');
 
 var app = express();
+var startTime = Date.now();
 
 app.use(useragent.express());
 
@@ -102,6 +103,12 @@ if (config.api.username && config.api.password) {
         };
     });
 }
+
+app.get('/api/status', function (req, res, next) {
+    res.send({
+        uptime: (Date.now() - startTime)/1000
+    });
+});
 
 app.get('/api/versions', function (req, res, next) {
     versions.list()
