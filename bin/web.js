@@ -3,6 +3,7 @@ var useragent = require('express-useragent')
 
 var config = require('../lib/config');
 var versions = require('../lib/versions');
+var platforms = require('../lib/platforms');
 var download = require('../lib/download');
 
 var app = express();
@@ -17,6 +18,16 @@ app.use(useragent.express());
 app.get('/download/version/:tag/:platform?', function (req, res, next) {
     var platform = req.params.platform;
 
+    // Detect platform from useragent
+    if (!platform) {
+        if (req.useragent.isMac) platform = platforms.OSX;
+        if (req.useragent.isWindows) platform = platforms.WINDOWS;
+        if (req.useragent.isLinux) platform = platforms.LINUX;
+        if (req.useragent.isLinux64) platform = platforms.LINUX_64;
+    }
+
+    if (!platform) return next(new Error('No platform specified and impossible to detect one'));
+
     versions.resolve({
         platform: platform,
         tag: req.params.tag
@@ -28,6 +39,10 @@ app.get('/download/version/:tag/:platform?', function (req, res, next) {
         return download.stream(platformVersion.download_url, res);
     })
     .fail(next);
+});
+
+app.get('/download/:platform?', function (req, res, next) {
+    res.redirect('/download/version/latest'+(req.params.platform? '/'+req.params.platform : ''));
 });
 
 
