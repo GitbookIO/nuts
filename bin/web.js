@@ -1,15 +1,34 @@
 var express = require('express');
-var app = express();
+var useragent = require('express-useragent')
 
 var config = require('../lib/config');
 var github = require('../lib/github');
+var download = require('../lib/download');
+
+var app = express();
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
+app.use(useragent.express());
 
-// API
+// Download links
+app.get('/download/version/:tag/:platform', function (req, res, next) {
+    var platform = req.params.platform;
+
+    github.version(req.params.tag)
+    .then(function(version) {
+        var platformVersion = version.platforms[platform];
+        if (!platformVersion) throw new Error("No download available for platform "+platform+" for version "+version.tag);
+
+        return download.stream(platformVersion.download_url, res);
+    })
+    .fail(next);
+});
+
+
+// Private API
 app.get('/api/versions', function (req, res, next) {
     github.versions()
     .then(function(versions) {
