@@ -9,13 +9,18 @@ var apiAuth =  {
     password: process.env.API_PASSWORD
 };
 
-app.use('/', nuts({
+app.use(nuts({
     repository: process.env.GITHUB_REPO,
     token: process.env.GITHUB_TOKEN,
     username: process.env.GITHUB_USERNAME,
     password: process.env.GITHUB_PASSWORD,
     timeout: process.env.VERSIONS_TIMEOUT,
     cache: process.env.VERSIONS_CACHE,
+
+    onDownload: function(download, req, next) {
+        console.log('download', download.version.tag, download.version.channel, "for", download.platform.type);
+        next();
+    },
 
     onAPIAccess: function(req, res, next) {
         if (!apiAuth.username) return next();

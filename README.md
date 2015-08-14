@@ -138,7 +138,7 @@ app.use('/myapp', nuts(
     preFetch: true,
 
     // Middlewares
-    onDownload: function(download, req, res, next) { next(); },
+    onDownload: function(version, req, next) { next(); },
     onAPIAccess: function(req, res, next) { next(); }
 ));
 
