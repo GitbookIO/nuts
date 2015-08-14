@@ -11,6 +11,12 @@ Nuts is a simple (and stateless) application to serve application's releases. It
 - :sparkles: Store assets on GitHub releases
 - :sparkles: Proxy assets from private repositories
 - :sparkles: Simple but powerful download urls
+    - `/download/latest`
+    - `/download/latest/:os`
+    - `/download/:version`
+    - `/download/:version/:os`
+    - `/download/channel/:channel`
+    - `/download/channel/:channel/:os`
 - :sparkles: Support pre-release channels (`beta`, `alpha`, ...)
 - :sparkles: Auto-updater with [Squirrel](https://github.com/Squirrel)
 - :sparkles: Private API
