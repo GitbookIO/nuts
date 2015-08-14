@@ -138,8 +138,13 @@ app.use('/myapp', nuts(
     preFetch: true,
 
     // Middlewares
-    onDownload: function(version, req, next) { next(); },
-    onAPIAccess: function(req, res, next) { next(); }
+    onDownload: function(version, req, next) {
+        console.log('download', download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+        next();
+    },
+    onAPIAccess: function(req, res, next) {
+        next();
+    }
 ));
 
 app.listen(4000);

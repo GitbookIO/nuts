@@ -18,7 +18,7 @@ app.use(nuts({
     cache: process.env.VERSIONS_CACHE,
 
     onDownload: function(download, req, next) {
-        console.log('download', download.version.tag, download.version.channel, "for", download.platform.type);
+        console.log('download', download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
         next();
     },
 
