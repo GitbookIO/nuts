@@ -14,7 +14,7 @@ Nuts is a simple (and stateless) application to serve application's releases. It
 - :sparkles: Support pre-release channels (`beta`, `alpha`, ...)
 - :sparkles: Auto-updater with [Squirrel](https://github.com/Squirrel)
 - :sparkles: Private API
-- :sparkles: Analytics using Segment.com
+- :sparkles: Use it as a middleware: add custom analytics, authentication
 
 #### Deploy it / Start it
 
@@ -112,3 +112,41 @@ Get stats about downloads:
 ```
 GET http://download.myapp.com/api/stats
 ```
+
+#### Integrate it as a middleware
+
+Nuts can be integrated into a Node.JS application as a middleware. Using the middleware, you can add custom authentication on downloads or analytics for downloads counts.
+
+```js
+var express = require('express');
+var nuts = require('nuts-serve');
+
+var app = express();
+
+app.use('/myapp', nuts(
+    // GitHub configuration
+    repository: "Me/MyRepo",
+    token: "my_api_token",
+
+    // Timeout for releases cache (seconds)
+    timeout: 60*60,
+
+    // Folder to cache assets (by default: a temporary folder)
+    cache: './assets',
+
+    // Pre-fetch list of releases at startup
+    preFetch: true,
+
+    // Middlewares
+    onDownload: function(version, req, next) {
+        console.log('download', download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+        next();
+    },
+    onAPIAccess: function(req, res, next) {
+        next();
+    }
+));
+
+app.listen(4000);
+```
+
