@@ -50,7 +50,7 @@ var downloader = stores(stores.FileStore, function(req, slot, next) {
 })
 
 app.get('/', downloader);
-app.get('/download/channel/:channel', downloader);
+app.get('/download/channel/:channel/:platform?', downloader);
 app.get('/download/version/:tag/:platform?', downloader);
 app.get('/download/:platform?', downloader);
 
