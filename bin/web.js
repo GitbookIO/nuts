@@ -16,13 +16,12 @@ var startTime = Date.now();
 
 app.use(useragent.express());
 
-app.get('/', function (req, res) {
-    res.redirect('/download/version/latest');
-});
 
 // Download links
-app.get('/download/version/:tag/:platform?', stores(stores.FileStore, function(req, slot, next) {
+var downloader = stores(stores.FileStore, function(req, slot, next) {
+    var channel = req.params.channel;
     var platform = req.params.platform;
+    var tag = req.params.tag;
 
     // Detect platform from useragent
     if (!platform) {
@@ -35,23 +34,25 @@ app.get('/download/version/:tag/:platform?', stores(stores.FileStore, function(r
     if (!platform) return next(new Error('No platform specified and impossible to detect one'));
 
     versions.resolve({
+        channel: channel,
         platform: platform,
-        tag: req.params.tag
+        tag: tag
     })
     .then(function(version) {
         var platformVersion = version.platforms[platform];
-        if (!platformVersion) throw new Error("No download available for platform "+platform+" for version "+version.tag);
+        if (!platformVersion) throw new Error("No download available for platform "+platform+" for version "+version.tag+" ("+(channel || "beta")+")");
 
         return download.stream(platformVersion.download_url).pipe(slot);
     })
     .fail(next);
 }, {
     root: config.versions.cache
-}));
+})
 
-app.get('/download/:platform?', function (req, res, next) {
-    res.redirect('/download/version/latest'+(req.params.platform? '/'+req.params.platform : ''));
-});
+app.get('/', downloader);
+app.get('/download/channel/:channel', downloader);
+app.get('/download/version/:tag/:platform?', downloader);
+app.get('/download/:platform?', downloader);
 
 // Auto-updater
 app.get('/update', function(req, res, next) {
@@ -121,7 +122,10 @@ app.get('/api/status', function (req, res, next) {
 });
 
 app.get('/api/versions', function (req, res, next) {
-    versions.list()
+    versions.filter({
+        platform: req.query.platform,
+        channel: req.query.channel
+    })
     .then(function(results) {
         res.send(results);
     }, next);
