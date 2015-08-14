@@ -83,6 +83,12 @@ Get details about specific version:
 GET http://download.myapp.com/api/version/1.1.0
 ```
 
+List channels:
+
+```js
+GET http://download.myapp.com/api/channels
+```
+
 Get stats about downloads:
 
 ```

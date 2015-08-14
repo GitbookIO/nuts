@@ -131,6 +131,13 @@ app.get('/api/versions', function (req, res, next) {
     }, next);
 });
 
+app.get('/api/channels', function (req, res, next) {
+    versions.channels()
+    .then(function(results) {
+        res.send(results);
+    }, next);
+});
+
 app.get('/api/version/:tag', function (req, res, next) {
     versions.get(req.params.tag)
     .then(function(result) {
