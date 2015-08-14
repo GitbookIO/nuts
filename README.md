@@ -2,7 +2,7 @@
 
 > Open source releases/downloads server with auto-updater and GitHub as a backend
 
-Nuts is a simple (and stateless) application to serve application's releases. It uses GitHub releases as a backend, and it can easily be deployed to heroku as a stateless service. It also works for GitHub private repositories (useful to store releases of a closed-source application available on GitHub).
+Nuts is a simple (and stateless) application to serve application's releases. It uses GitHub releases as a backend, and it can easily be deployed to heroku as a stateless service. It supports private repositories (useful to store releases of a closed-source application available on GitHub).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
