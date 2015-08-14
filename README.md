@@ -2,7 +2,7 @@
 
 > Open source releases/downloads server with auto-updater and GitHub as a backend
 
-This application is a simple release server to download specific or latest version of a desktop application. It uses GitHub releases as a backend, so it can easily be deployed to heroku as a stateless service, it also works for GitHub private repositories (useful to store releases of a closed-source application available on GitHub).
+Nuts is a simple (and stateless) application to serve application's releases. It uses GitHub releases as a backend, and it can easily be deployed to heroku as a stateless service. It also works for GitHub private repositories (useful to store releases of a closed-source application available on GitHub).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
@@ -14,6 +14,7 @@ This application is a simple release server to download specific or latest versi
 - :sparkles: Support pre-release channels (`beta`, `alpha`, ...)
 - :sparkles: Auto-updater with [Squirrel](https://github.com/Squirrel)
 - :sparkles: Private API
+- :sparkles: Analytics using Segment.com
 
 #### Deploy it / Start it
 
@@ -29,7 +30,8 @@ This service requires to be configured using environment variables:
 # Set the port for the service
 $ export PORT=6000
 
-# Access token for the GitHub API (requires permissions to access the repository), you can also use GITHUB_USERNAME and GITHUB_USERNAME
+# Access token for the GitHub API (requires permissions to access the repository)
+# you can also use GITHUB_USERNAME and GITHUB_USERNAME
 $ export GITHUB_TOKEN=...
 
 # ID for the GitHub repository
@@ -75,7 +77,12 @@ For example with Electron:
 var app = require('app');
 var os = require('os');
 var autoUpdater = require('auto-updater');
-autoUpdater.setFeedUrl('http://download.myapp.com/update?version=' + app.getVersion() + '&platform='+os.platform() + '_' + os.arch());
+
+autoUpdater.setFeedUrl(
+    'http://download.myapp.com/update?'
+    + 'version=' + app.getVersion()
+    + '&platform='+os.platform() + '_' + os.arch()
+);
 ```
 
 #### Private API

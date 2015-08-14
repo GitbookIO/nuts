@@ -176,6 +176,8 @@ app.use(function(err, req, res, next) {
     var msg = err.message || err;
     var code = 500;
 
+    console.error(err.stack || err);
+
     // Return error
     res.format({
         'text/plain': function(){
@@ -198,4 +200,7 @@ var server = app.listen(config.port, function () {
     var port = server.address().port;
 
     console.log('Listening at http://%s:%s', host, port);
+
+    // Pre-fetch versions list
+    versions.list();
 });
