@@ -6,6 +6,15 @@ This application is a simple release server to download specific or latest versi
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+#### Features
+
+- :sparkles: Store assets on GitHub releases
+- :sparkles: Proxy assets from private repositories
+- :sparkles: Simple but powerful download urls
+- :sparkles: Support pre-release channels (`beta`, `alpha`, ...)
+- :sparkles: Auto-updater with [Squirrel](https://github.com/Squirrel)
+- :sparkles: Private API
+
 #### Deploy it / Start it
 
 Install dependencies using:
