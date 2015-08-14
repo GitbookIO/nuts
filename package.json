@@ -17,6 +17,10 @@
         "express-useragent": "0.1.9",
         "stores": "0.0.2"
     },
+    "devDependencies": {
+        "mocha": "1.18.2",
+        "should": "7.0.4"
+    },
     "bugs": {
         "url": "https://github.com/GitbookIO/nuts/issues"
     },
@@ -31,6 +35,7 @@
         "url" : "https://github.com/GitbookIO/nuts.git"
     },
     "scripts": {
-        "start": "node bin/web.js"
+        "start": "node bin/web.js",
+        "test": "mocha --reporter list"
     }
 }
