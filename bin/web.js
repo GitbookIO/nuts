@@ -17,8 +17,8 @@ app.use(nuts({
     timeout: process.env.VERSIONS_TIMEOUT,
     cache: process.env.VERSIONS_CACHE,
 
-    onDownload: function(download, req, next) {
-        console.log('download', download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+    onDownload: function(download, req, res, next) {
+        console.log('download', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
         next();
     },
 

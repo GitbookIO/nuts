@@ -144,7 +144,7 @@ app.use('/myapp', nuts(
     preFetch: true,
 
     // Middlewares
-    onDownload: function(version, req, next) {
+    onDownload: function(version, req, res, next) {
         console.log('download', download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
         next();
     },
