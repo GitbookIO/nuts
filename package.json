@@ -17,7 +17,8 @@
         "basic-auth": "1.0.3",
         "express-useragent": "0.1.9",
         "stores": "0.0.2",
-        "analytics.js": "2.9.1"
+        "analytics-node": "1.2.2",
+        "uuid": "2.0.1"
     },
     "devDependencies": {
         "mocha": "1.18.2",

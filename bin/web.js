@@ -1,5 +1,7 @@
 var express = require('express');
+var uuid = require('uuid');
 var basicAuth = require('basic-auth');
+var Analytics = require('analytics-node');
 var nuts = require('../');
 
 var app = express();
@@ -8,6 +10,11 @@ var apiAuth =  {
     username: process.env.API_USERNAME,
     password: process.env.API_PASSWORD
 };
+
+var analytics = undefined;
+if (process.env.ANALYTICS_TOKEN) {
+    analytics = new Analytics(process.env.ANALYTICS_TOKEN);
+}
 
 app.use(nuts({
     repository: process.env.GITHUB_REPO,
@@ -19,6 +26,24 @@ app.use(nuts({
 
     onDownload: function(download, req, res, next) {
         console.log('download', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+
+        // Track on segment if enabled
+        if (analytics) {
+            var userId = req.query.user;
+
+            analytics.track({
+                event: process.env.ANALYTICS_EVENT_DOWNLOAD || 'download',
+                anonymousId: userId? null : uuid.v4(),
+                userId: userId,
+                properties: {
+                    version: download.version.tag,
+                    channel: download.version.channel,
+                    platform: download.platform.type,
+                    os: nuts.platforms.toType(download.platform.type)
+                }
+            });
+        }
+
         next();
     },
 
