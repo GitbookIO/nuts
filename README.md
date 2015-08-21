@@ -132,11 +132,10 @@ Nuts can be integrated into a Node.JS application as a middleware. Using the mid
 
 ```js
 var express = require('express');
-var nuts = require('nuts-serve');
+var Nuts = require('nuts-serve');
 
 var app = express();
-
-app.use('/myapp', nuts(
+var nuts = Nuts(
     // GitHub configuration
     repository: "Me/MyRepo",
     token: "my_api_token",
@@ -158,7 +157,9 @@ app.use('/myapp', nuts(
     onAPIAccess: function(req, res, next) {
         next();
     }
-));
+);
+
+app.use('/myapp', nuts);
 
 app.listen(4000);
 ```

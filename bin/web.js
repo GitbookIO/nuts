@@ -16,7 +16,7 @@ if (process.env.ANALYTICS_TOKEN) {
     analytics = new Analytics(process.env.ANALYTICS_TOKEN);
 }
 
-app.use(nuts({
+var myNuts = nuts({
     repository: process.env.GITHUB_REPO,
     token: process.env.GITHUB_TOKEN,
     username: process.env.GITHUB_USERNAME,
@@ -67,7 +67,9 @@ app.use(nuts({
             return unauthorized(res);
         };
     }
-}))
+});
+
+app.use(myNuts.router);
 
 // Error handling
 app.use(function(req, res, next) {
