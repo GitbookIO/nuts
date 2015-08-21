@@ -108,6 +108,12 @@ Get details about specific version:
 GET http://download.myapp.com/api/version/1.1.0
 ```
 
+Resolve a version:
+
+```
+GET http://download.myapp.com/api/resolve?platform=osx&channel=alpha
+```
+
 List channels:
 
 ```
