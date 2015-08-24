@@ -22,6 +22,7 @@ Nuts is a simple (and smart) application to serve releases. It uses GitHub Relea
 - :sparkles: Private API
 - :sparkles: Use it as a middleware: add custom analytics, authentication
 - :sparkles: Serve the perfect type of assets: `.zip` for Squirrel and `.dmg` for users
+- :sparkles: Refresh cache on GitHub webhooks
 
 #### Deploy it / Start it
 
@@ -126,6 +127,10 @@ Get stats about downloads:
 GET http://download.myapp.com/api/stats
 ```
 
+#### GitHub Webhook
+
+Add `http://download.myapp.com/refresh` as a GitHub webhook to refresh versions cache everytime you update a release on GitHub.
+
 #### Integrate it as a middleware
 
 Nuts can be integrated into a Node.JS application as a middleware. Using the middleware, you can add custom authentication on downloads or analytics for downloads counts.
@@ -148,6 +153,9 @@ var nuts = Nuts(
 
     // Pre-fetch list of releases at startup
     preFetch: true,
+
+    // Secret for refresh webhook
+    refreshSecret: 'my-secret',
 
     // Middlewares
     onDownload: function(version, req, res, next) {

@@ -18,7 +18,8 @@
         "express-useragent": "0.1.9",
         "stores": "0.0.2",
         "analytics-node": "1.2.2",
-        "uuid": "2.0.1"
+        "uuid": "2.0.1",
+        "github-webhook-handler": "0.5.0"
     },
     "devDependencies": {
         "mocha": "1.18.2",

@@ -23,6 +23,7 @@ var myNuts = nuts({
     password: process.env.GITHUB_PASSWORD,
     timeout: process.env.VERSIONS_TIMEOUT,
     cache: process.env.VERSIONS_CACHE,
+    refreshSecret: process.env.GITHUB_SECRET,
 
     onDownload: function(download, req, res, next) {
         console.log('download', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
