@@ -2,14 +2,16 @@
 
 > Open source releases/downloads server with auto-updater and GitHub as a backend
 
-Nuts is a simple (and smart) application to serve releases. It uses GitHub Releases as a backend, and it can easily be deployed to Heroku as a stateless service. It supports private repositories (useful to store releases of a closed-source application available on GitHub).
+Nuts is a simple (and smart) application to serve desktop-application releases.
+
+It uses GitHub as a backend to store assets, and it can easily be deployed to Heroku as a stateless service. It supports GitHub private repositories (useful to store releases of a closed-source application available on GitHub).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 #### Features
 
 - :sparkles: Store assets on GitHub releases
-- :sparkles: Proxy assets from private repositories
+- :sparkles: Proxy releases from private repositories to your users
 - :sparkles: Simple but powerful download urls
     - `/download/latest`
     - `/download/latest/:os`
@@ -18,13 +20,13 @@ Nuts is a simple (and smart) application to serve releases. It uses GitHub Relea
     - `/download/channel/:channel`
     - `/download/channel/:channel/:os`
 - :sparkles: Support pre-release channels (`beta`, `alpha`, ...)
-- :sparkles: Auto-updater with [Squirrel](https://github.com/Squirrel)
+- :sparkles: Auto-updates with [Squirrel](https://github.com/Squirrel)
     - For Mac using `/update?version=<x.x.x>&platform=osx`
     - For Windows using Squirrel.Windows and Nugets packages
 - :sparkles: Private API
 - :sparkles: Use it as a middleware: add custom analytics, authentication
-- :sparkles: Serve the perfect type of assets: `.zip` for Squirrel and `.dmg` for users
-- :sparkles: Refresh cache on GitHub webhooks
+- :sparkles: Serve the perfect type of assets: `.zip` for Squirrel.Mac, `.nupkg` for Squirrel.Windows, `.dmg` for Mac users, ...
+- :sparkles: Up-to-date releases (GitHub webhooks)
 
 #### Deploy it / Start it
 
@@ -57,6 +59,24 @@ Then start the application using:
 ```
 $ npm start
 ```
+
+#### Assets for releases
+
+Nuts uses some filename/extension conventions to serve the correct asset to a specific request:
+
+Platform will be detected from the filename:
+
+- Windows: filename should contain `win`
+- Mac/OS X: filename should contain `mac` or `osx`
+- Linux: filename should contain `linux`
+
+32bits and 64bits will also be detected from filenames.
+
+Filetype and usage will be detected from the extension:
+
+- `.dmg` will be served in priority to Mac users
+- `.nupkg` will only be served to Squirrel.Windows requests
+- Otherwise, `.zip` are advised (Linux, Mac, Windows and Squirrel.Mac)
 
 #### Download urls
 
