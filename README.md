@@ -93,7 +93,7 @@ Nuts provides urls to access releases assets. These assets are cached on the dis
 
 Platforms can be detected from user-agent and are normalized to values: `osx`, `osx_32`, `osx_64`, `linux`, `linux_32`, `linux_64`, `windows`, `windows_32`, `windows_64`.
 
-Non-prefixed platform will be resolve to 32 bits.
+Non-prefixed platform will be resolve to 32 bits (except for OSX).
 
 #### Auto-updater / Squirrel
 
