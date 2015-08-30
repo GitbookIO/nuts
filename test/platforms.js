@@ -6,11 +6,12 @@ describe('Platforms', function() {
     describe('Detect', function() {
 
         it('should detect osx_64', function() {
-            platforms.detect('myapp-v0.25.1-darwin-x64.zip').should.be.exactly(platforms.OSX_64)
+            platforms.detect('myapp-v0.25.1-darwin-x64.zip').should.be.exactly(platforms.OSX_64);
         });
 
         it('should detect windows_32', function() {
-            platforms.detect('myapp-v0.25.1-win32-ia32.zip').should.be.exactly(platforms.WINDOWS_32)
+            platforms.detect('myapp-v0.25.1-win32-ia32.zip').should.be.exactly(platforms.WINDOWS_32);
+            platforms.detect('atom-1.0.9-delta.nupkg').should.be.exactly(platforms.WINDOWS_32)
         });
 
     });
