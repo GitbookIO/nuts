@@ -97,11 +97,11 @@ Non-prefixed platform will be resolve to 32 bits (except for OSX).
 
 #### Auto-updater / Squirrel
 
-This server provides an endpoint for [Squirrel auto-updater](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md): `http://download.myapp.com/update`.
+This server provides an endpoint for [Squirrel auto-updater](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md): `http://download.myapp.com/update/osx/:currentVersion`.
 
 ###### Squirrel.Mac
 
-This url requires different query parameters to return a correct version: `version` and `platform`.
+This url requires different parameters to return a correct version: `version` and `platform`.
 
 For example with Electron's `auto-updater` module:
 
@@ -199,7 +199,6 @@ var nuts = Nuts(
 );
 
 app.use('/myapp', nuts);
-
 app.listen(4000);
 ```
 
