@@ -11,7 +11,8 @@ describe('Platforms', function() {
 
         it('should detect windows_32', function() {
             platforms.detect('myapp-v0.25.1-win32-ia32.zip').should.be.exactly(platforms.WINDOWS_32);
-            platforms.detect('atom-1.0.9-delta.nupkg').should.be.exactly(platforms.WINDOWS_32)
+            platforms.detect('atom-1.0.9-delta.nupkg').should.be.exactly(platforms.WINDOWS_32);
+            platforms.detect('RELEASES').should.be.exactly(platforms.WINDOWS_32);
         });
 
     });
