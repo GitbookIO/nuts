@@ -1,7 +1,5 @@
 # Nuts
 
-> Open source releases/downloads server with auto-updater and GitHub as a backend
-
 Nuts is a simple (and smart) application to serve desktop-application releases.
 
 ![Schema](./schema.png)
