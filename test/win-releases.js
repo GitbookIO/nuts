@@ -35,6 +35,11 @@ describe('Windows RELEASES', function() {
             releases.length.should.be.exactly(5);
         });
 
+        it('should parse a one-line file (with utf-8 BOM)', function() {
+            var oneRelease = winReleases.parse("\uFEFF24182FAD211FB9EB72610B1C086810FE37F70AE3 gitbook-editor-4.0.0-full.nupkg 46687158");
+            oneRelease.length.should.be.exactly(1);
+        });
+
         it('should correctly parse sha, version, isDelta, filename and size', function() {
             releases[0].sha.should.be.a.String();
             releases[0].sha.should.be.exactly('62E8BF432F29E8E08240910B85EDBF2D1A41EDF2');
