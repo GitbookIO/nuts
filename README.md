@@ -70,7 +70,7 @@ Platform will be detected from the filename:
 - Mac/OS X: filename should contain `mac` or `osx`
 - Linux: filename should contain `linux`
 
-By default releases as tagged as 32-bits (except for OSX), but 64-bits will also be detected from filenames.
+By default releases are tagged as 32-bits (except for OSX), but 64-bits will also be detected from filenames.
 
 Filetype and usage will be detected from the extension:
 
