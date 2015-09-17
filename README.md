@@ -113,7 +113,7 @@ var autoUpdater = require('auto-updater');
 var platform = os.platform() + '_' + os.arch();
 var version = app.getVersion();
 
-autoUpdater.setFeedUrl('http://download.myapp.com/update/'+arch+'/'+version);
+autoUpdater.setFeedUrl('http://download.myapp.com/update/'+platform+'/'+version);
 ```
 
 ###### Squirrel.Windows
