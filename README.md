@@ -162,6 +162,8 @@ GET http://download.myapp.com/api/stats
 
 Add `http://download.myapp.com/refresh` as a GitHub webhook to refresh versions cache everytime you update a release on GitHub.
 
+The secret can be configured using `GITHUB_SECRET` (default value is `secret`).
+
 #### Integrate it as a middleware
 
 Nuts can be integrated into a Node.JS application as a middleware. Using the middleware, you can add custom authentication on downloads or analytics for downloads counts.
