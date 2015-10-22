@@ -26,6 +26,8 @@ It uses GitHub as a backend to store assets, and it can easily be deployed to He
 - :sparkles: Private API
 - :sparkles: Use it as a middleware: add custom analytics, authentication
 - :sparkles: Serve the perfect type of assets: `.zip` for Squirrel.Mac, `.nupkg` for Squirrel.Windows, `.dmg` for Mac users, ...
+- :sparkles: Release notes endpoint
+    - `/notes/:version`
 - :sparkles: Up-to-date releases (GitHub webhooks)
 
 #### Deploy it / Start it
