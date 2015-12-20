@@ -20,7 +20,8 @@
         "analytics-node": "1.2.2",
         "uuid": "2.0.1",
         "github-webhook-handler": "0.5.0",
-        "strip-bom": "2.0.0"
+        "strip-bom": "2.0.0",
+        "destroy": "1.0.3"
     },
     "devDependencies": {
         "mocha": "1.18.2",
