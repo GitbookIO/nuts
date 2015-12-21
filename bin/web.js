@@ -4,6 +4,11 @@ var basicAuth = require('basic-auth');
 var Analytics = require('analytics-node');
 var nuts = require('../');
 
+const
+    BASE_URL = process.env.BASE_URL || '/',
+    PORT     = process.env.PORT || 5000,
+    HOST     = process.env.HOST || '0.0.0.0';
+
 var app = express();
 
 var apiAuth =  {
@@ -70,7 +75,7 @@ var myNuts = nuts({
     }
 });
 
-app.use(myNuts.router);
+app.use(BASE_URL, myNuts.router);
 
 // Error handling
 app.use(function(req, res, next) {
@@ -99,9 +104,6 @@ app.use(function(err, req, res, next) {
     });
 });
 
-var server = app.listen(process.env.PORT || 5000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log('Listening at http://%s:%s', host, port);
+var server = app.listen(PORT, HOST, function () {
+    console.log('Listening at http://%s:%s%s', HOST, PORT, BASE_URL);
 });
