@@ -7,6 +7,7 @@ describe('Platforms', function() {
 
         it('should detect osx_64', function() {
             platforms.detect('myapp-v0.25.1-darwin-x64.zip').should.be.exactly(platforms.OSX_64);
+            platforms.detect('myapp.dmg').should.be.exactly(platforms.OSX_64);
         });
 
         it('should detect windows_32', function() {
