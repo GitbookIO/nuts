@@ -41,8 +41,14 @@ $ npm install
 This service requires to be configured using environment variables:
 
 ```
-# Set the port for the service
+# Set the port for the service (default is 5000)
 $ export PORT=6000
+
+# Set the host for the service (default is 0.0.0.0)
+$ export HOST=127.0.0.1
+
+# Set a base URL for the service (default is '/')
+$ export BASE_URL=/release
 
 # Access token for the GitHub API (requires permissions to access the repository)
 # If the repository is public you do not need to provide an access token
