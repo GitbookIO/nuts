@@ -17,6 +17,8 @@ describe('Platforms', function() {
         });
 
         it('should detect linux', function() {
+            platforms.detect('myapp-v0.25.1.tar.gz').should.be.exactly(platforms.LINUX_32);
+            platforms.detect('myapp-v0.25.1-amd64.tar.gz').should.be.exactly(platforms.LINUX_64);
             platforms.detect('atom-amd64.deb').should.be.exactly(platforms.LINUX_64);
         });
 
