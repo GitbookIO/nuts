@@ -58,6 +58,9 @@ $ export GITHUB_TOKEN=...
 # ID for the GitHub repository
 $ export GITHUB_REPO=Username/MyApp
 
+# Secret for GitHub webhook (default is 'secret')
+$ export GITHUB_WEBHOOK_SECRET=somethingsupersecret
+
 # Authentication for the private API
 $ export API_USERNAME=hello
 $ export API_PASSWORD=world
