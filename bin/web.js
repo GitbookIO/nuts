@@ -8,12 +8,12 @@ const
     BASE_URL    = process.env.BASE_URL || '/',
     PORT        = process.env.PORT || 5000,
     HOST        = process.env.HOST || '0.0.0.0'
-    TRUST_PROXY = process.env.TRUST_PROXY || false;
+    TRUST_PROXY = process.env.TRUST_PROXY;
 
 var app = express();
 
 if (TRUST_PROXY) {
-    app.set('trust proxy', true);
+    app.set('trust proxy', (TRUST_PROXY === 'true') ? true : TRUST_PROXY);
 }
 
 var apiAuth =  {
