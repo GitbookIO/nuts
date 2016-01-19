@@ -94,7 +94,7 @@ describe('Versions', function() {
         platform: 'osx',
         channel: undefined
       },
-      expectation: []
+      expectation: ['0.0.7']
     },
     {
       opts: {
@@ -102,7 +102,7 @@ describe('Versions', function() {
         platform: 'osx',
         channel: undefined
       },
-      expectation: ['0.0.7']
+      expectation: ['0.0.7', '0.0.6']
     },
     {
       opts: {
@@ -110,15 +110,7 @@ describe('Versions', function() {
         platform: 'osx',
         channel: undefined
       },
-      expectation: ['0.0.7']
-    },
-    {
-      opts: {
-        tag: '0.0.5',
-        platform: 'osx',
-        channel: undefined
-      },
-      expectation: ['0.0.7', '0.0.6']
+      expectation: ['0.0.7', '0.0.7-beta.1']
     },
     {
       opts: {
@@ -126,7 +118,7 @@ describe('Versions', function() {
         platform: 'osx',
         channel: 'alpha'
       },
-      expectation: ['0.0.8-alpha.1']
+      expectation: ['0.0.8-alpha.1', '0.0.7-alpha.2']
     },
     {
       opts: {
@@ -134,7 +126,7 @@ describe('Versions', function() {
         platform: 'osx',
         channel: 'beta'
       },
-      expectation: []
+      expectation: ['0.0.7-beta.1']
     },
     {
       opts: {
@@ -142,7 +134,7 @@ describe('Versions', function() {
         platform: 'windows',
         channel: 'alpha'
       },
-      expectation: ['0.0.8-alpha.1', '0.0.7-alpha.2']
+      expectation: ['0.0.8-alpha.1', '0.0.7-alpha.2', '0.0.7-alpha.1']
     }
   ]);
 
