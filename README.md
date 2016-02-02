@@ -6,6 +6,8 @@ Nuts is a simple (and smart) application to serve desktop-application releases.
 
 It uses GitHub as a backend to store assets, and it can easily be deployed to Heroku as a stateless service. It supports GitHub private repositories (useful to store releases of a closed-source application available on GitHub).
 
+_Additionally you may provide a custom release endpoint, as long as it conforms to GitHub's release API schema._
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 #### Features
@@ -55,6 +57,14 @@ $ export GITHUB_REPO=Username/MyApp
 # Authentication for the private API
 $ export API_USERNAME=hello
 $ export API_PASSWORD=world
+
+# (optional)
+# If provided, the service will try to get requests from a GitHub-equivalent
+# release API endpoint. If you are making use of this functionality, you may
+# wish to use the HOST alias for other fields (ex. HOST_TOKEN)
+# A complete http/https URL pointing to the release endpoint
+$ export RELEASES_ENDPOINT="http://example.com/api/releases"
+
 ```
 
 Then start the application using:
@@ -116,7 +126,7 @@ var autoUpdater = require('auto-updater');
 var platform = os.platform() + '_' + os.arch();
 var version = app.getVersion();
 
-autoUpdater.setFeedUrl('http://download.myapp.com/update/'+platform+'/'+version);
+autoUpdater.setFeedUrl('http://download.myapp.com/update/' + platform + '/' + version);
 ```
 
 ###### Squirrel.Windows
@@ -184,6 +194,9 @@ var nuts = Nuts(
     // GitHub configuration
     repository: "Me/MyRepo",
     token: "my_api_token",
+
+    // Optional host configuration (instead of github)
+    // releasesEndpoint: "http://example.com/api/releases",
 
     // Timeout for releases cache (seconds)
     timeout: 60*60,

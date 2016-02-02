@@ -6,24 +6,25 @@ var nuts = require('../');
 
 var app = express();
 
-var apiAuth =  {
+var apiAuth = {
     username: process.env.API_USERNAME,
     password: process.env.API_PASSWORD
 };
 
-var analytics = undefined;
+var analytics;
 if (process.env.ANALYTICS_TOKEN) {
     analytics = new Analytics(process.env.ANALYTICS_TOKEN);
 }
 
 var myNuts = nuts({
     repository: process.env.GITHUB_REPO,
-    token: process.env.GITHUB_TOKEN,
-    username: process.env.GITHUB_USERNAME,
-    password: process.env.GITHUB_PASSWORD,
+    token: process.env.RELEASES_ENDPOINT,
+    releasesEndpoint: process.env.HOST_TOKEN || process.env.GITHUB_TOKEN,
+    username: process.env.HOST_USERNAME || process.env.GITHUB_USERNAME,
+    password: process.env.HOST_PASSWORD || process.env.GITHUB_PASSWORD,
     timeout: process.env.VERSIONS_TIMEOUT,
     cache: process.env.VERSIONS_CACHE,
-    refreshSecret: process.env.GITHUB_SECRET,
+    refreshSecret: process.env.HOST_SECRET || process.env.GITHUB_SECRET,
 
     onDownload: function(download, req, res, next) {
         console.log('download', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
@@ -34,7 +35,7 @@ var myNuts = nuts({
 
             analytics.track({
                 event: process.env.ANALYTICS_EVENT_DOWNLOAD || 'download',
-                anonymousId: userId? null : uuid.v4(),
+                anonymousId: userId ? null : uuid.v4(),
                 userId: userId,
                 properties: {
                     version: download.version.tag,
@@ -54,19 +55,19 @@ var myNuts = nuts({
         function unauthorized(res) {
             res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
             return res.send(401);
-        };
+        }
 
         var user = basicAuth(req);
 
         if (!user || !user.name || !user.pass) {
             return unauthorized(res);
-        };
+        }
 
         if (user.name === apiAuth.username && user.pass === apiAuth.password) {
             return next();
         } else {
             return unauthorized(res);
-        };
+        }
     }
 });
 
@@ -84,13 +85,13 @@ app.use(function(err, req, res, next) {
 
     // Return error
     res.format({
-        'text/plain': function(){
+        'text/plain': function() {
             res.status(code).send(msg);
         },
-        'text/html': function () {
+        'text/html': function() {
             res.status(code).send(msg);
         },
-        'application/json': function (){
+        'application/json': function() {
             res.status(code).send({
                 'error': msg,
                 'code': code
@@ -99,7 +100,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-var server = app.listen(process.env.PORT || 5000, function () {
+var server = app.listen(process.env.PORT || 5000, function() {
     var host = server.address().address;
     var port = server.address().port;
 
