@@ -19,6 +19,13 @@ describe('Windows RELEASES', function() {
             winReleases.normVersion('1.0.0-14').should.be.exactly('1.0.0.14');
         });
 
+        it('should correctly return to a semver', function() {
+            winReleases.toSemver('1.0.0.1001').should.be.exactly('1.0.0-alpha.1');
+            winReleases.toSemver('1.0.0.2001').should.be.exactly('1.0.0-beta.1');
+            winReleases.toSemver('1.0.0.2015').should.be.exactly('1.0.0-beta.15');
+            winReleases.toSemver('1.0.0').should.be.exactly('1.0.0');
+        })
+
     });
 
     describe('Parsing', function() {
