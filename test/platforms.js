@@ -1,5 +1,5 @@
 var should = require('should');
-var platforms = require('../lib/platforms');
+var platforms = require('../lib/utils/platforms');
 
 describe('Platforms', function() {
 

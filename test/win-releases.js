@@ -1,5 +1,5 @@
 var should = require('should');
-var winReleases = require('../lib/win-releases');
+var winReleases = require('../lib/utils/win-releases');
 
 describe('Windows RELEASES', function() {
 
