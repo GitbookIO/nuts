@@ -16,7 +16,7 @@ if (process.env.ANALYTICS_TOKEN) {
     analytics = new Analytics(process.env.ANALYTICS_TOKEN);
 }
 
-var myNuts = nuts({
+var myNuts = nuts.Nuts({
     repository: process.env.GITHUB_REPO,
     token: process.env.GITHUB_TOKEN,
     username: process.env.GITHUB_USERNAME,
@@ -99,6 +99,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
+// Start the HTTP server
 var server = app.listen(process.env.PORT || 5000, function () {
     var host = server.address().address;
     var port = server.address().port;
