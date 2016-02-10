@@ -12,11 +12,12 @@ var apiAuth =  {
 };
 
 var analytics = undefined;
+var downloadEvent = process.env.ANALYTICS_EVENT_DOWNLOAD || 'download';
 if (process.env.ANALYTICS_TOKEN) {
     analytics = new Analytics(process.env.ANALYTICS_TOKEN);
 }
 
-var myNuts = nuts({
+var myNuts = nuts.Nuts({
     repository: process.env.GITHUB_REPO,
     token: process.env.GITHUB_TOKEN,
     username: process.env.GITHUB_USERNAME,
@@ -33,7 +34,7 @@ var myNuts = nuts({
             var userId = req.query.user;
 
             analytics.track({
-                event: process.env.ANALYTICS_EVENT_DOWNLOAD || 'download',
+                event: downloadEvent,
                 anonymousId: userId? null : uuid.v4(),
                 userId: userId,
                 properties: {
@@ -99,9 +100,17 @@ app.use(function(err, req, res, next) {
     });
 });
 
-var server = app.listen(process.env.PORT || 5000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
+myNuts.init()
 
-    console.log('Listening at http://%s:%s', host, port);
+// Start the HTTP server
+.then(function() {
+    var server = app.listen(process.env.PORT || 5000, function () {
+        var host = server.address().address;
+        var port = server.address().port;
+
+        console.log('Listening at http://%s:%s', host, port);
+    });
+}, function(err) {
+    console.log(err.stack || err);
+    process.exit(1);
 });

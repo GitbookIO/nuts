@@ -11,7 +11,7 @@
         "lodash": "3.7.0",
         "q": "1.2.0",
         "body-parser": "1.12.3",
-        "octonode": "0.7.1",
+        "octocat": "0.10.2",
         "semver": "5.0.1",
         "request": "2.60.0",
         "basic-auth": "1.0.3",
@@ -21,7 +21,8 @@
         "uuid": "2.0.1",
         "github-webhook-handler": "0.5.0",
         "strip-bom": "2.0.0",
-        "destroy": "1.0.3"
+        "destroy": "1.0.3",
+        "hooks-fixed": "1.1.0"
     },
     "devDependencies": {
         "mocha": "1.18.2",
