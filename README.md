@@ -191,6 +191,10 @@ var nuts = Nuts(
     // Folder to cache assets (by default: a temporary folder)
     cache: './assets',
 
+    // Cache configuration
+    cacheMax: 500 * 1024 * 1024,
+    cacheMaxAge: 60 * 60 * 1000,
+
     // Pre-fetch list of releases at startup
     preFetch: true,
 

@@ -16,7 +16,7 @@
         "request": "2.60.0",
         "basic-auth": "1.0.3",
         "express-useragent": "0.1.9",
-        "stores": "0.0.2",
+        "lru-diskcache": "1.0.0",
         "analytics-node": "1.2.2",
         "uuid": "2.0.1",
         "github-webhook-handler": "0.5.0",
