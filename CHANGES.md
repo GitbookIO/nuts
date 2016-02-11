@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### 3.0.0
 - Rewrite to be cleaner
 - Support for other backends than GitHub
+- Better disk caching
 
 ### 2.6.0
 - Add `/notes` endpoint to get changelog
