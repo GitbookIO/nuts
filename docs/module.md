@@ -39,3 +39,25 @@ GitHub specific configuration:
 
 - `refreshSecret`: (string) Secret for the GitHub webhook
 
+### Hooks
+
+You can bind interceptors (i.e. hooks) to certain asynchronous actions using `nuts.before(fn)` and `nuts.after(fn)`:
+
+- `download`: When an user is downloading a version
+- `api`: when an user is accessing the API
+
+```js
+nuts.before('download', function(download, next) {
+    console.log('user is downloading', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+
+    next();
+});
+
+nuts.after('download', function(download, next) {
+    console.log('user downloaded', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+
+    next();
+});
+```
+
+
