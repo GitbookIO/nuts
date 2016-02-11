@@ -12,6 +12,10 @@ Since version 3.0.0, Nuts can works with [other backends](https://github.com/Git
 
 [Yes you can](deploy.md)!
 
+### Can I use it in my Node.js application?
+
+[Yes you can](module.md)!
+
 ### What file should I upload to the GitHub release?
 
 Nuts can detect the type of file from its filename, there is no strict policy on file naming. Nuts tries to respect the filename/extension conventions for the different platforms. request:)
