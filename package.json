@@ -22,7 +22,7 @@
         "github-webhook-handler": "0.5.0",
         "strip-bom": "2.0.0",
         "destroy": "1.0.3",
-        "hooks-fixed": "1.1.0"
+        "understudy": "4.1.0"
     },
     "devDependencies": {
         "mocha": "1.18.2",

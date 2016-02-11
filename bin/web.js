@@ -26,29 +26,6 @@ var myNuts = nuts.Nuts({
     cache: process.env.VERSIONS_CACHE,
     refreshSecret: process.env.GITHUB_SECRET,
 
-    onDownload: function(download, req, res, next) {
-        console.log('download', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
-
-        // Track on segment if enabled
-        if (analytics) {
-            var userId = req.query.user;
-
-            analytics.track({
-                event: downloadEvent,
-                anonymousId: userId? null : uuid.v4(),
-                userId: userId,
-                properties: {
-                    version: download.version.tag,
-                    channel: download.version.channel,
-                    platform: download.platform.type,
-                    os: nuts.platforms.toType(download.platform.type)
-                }
-            });
-        }
-
-        next();
-    },
-
     onAPIAccess: function(req, res, next) {
         if (!apiAuth.username) return next();
 
@@ -69,6 +46,55 @@ var myNuts = nuts.Nuts({
             return unauthorized(res);
         };
     }
+});
+
+// Control access to API
+myNuts.before('api', function(access, next) {
+    if (!apiAuth.username) return next();
+
+    function unauthorized() {
+        next(new Error('Invalid username/password for API'));
+    };
+
+    var user = basicAuth(req);
+    if (!user || !user.name || !user.pass) {
+        return unauthorized();
+    };
+
+    if (user.name === apiAuth.username && user.pass === apiAuth.password) {
+        return next();
+    } else {
+        return unauthorized();
+    };
+});
+
+// Log download
+myNuts.before('download', function(download, next) {
+    console.log('download', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+
+    next();
+});
+myNuts.after('download', function(download, next) {
+    console.log('downloaded', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+
+    // Track on segment if enabled
+    if (analytics) {
+        var userId = req.query.user;
+
+        analytics.track({
+            event: downloadEvent,
+            anonymousId: userId? null : uuid.v4(),
+            userId: userId,
+            properties: {
+                version: download.version.tag,
+                channel: download.version.channel,
+                platform: download.platform.type,
+                os: nuts.platforms.toType(download.platform.type)
+            }
+        });
+    }
+
+    next();
 });
 
 app.use(myNuts.router);
