@@ -32,7 +32,7 @@ It uses GitHub as a backend to store assets, and it can easily be deployed to He
 
 #### Deploy it / Start it
 
-[Follow our guide to deploy Nuts](docs/dpeloy.md).
+[Follow our guide to deploy Nuts](docs/deploy.md).
 
 
 #### Auto-updater / Squirrel
