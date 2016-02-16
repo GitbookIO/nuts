@@ -24,28 +24,7 @@ var myNuts = nuts.Nuts({
     password: process.env.GITHUB_PASSWORD,
     timeout: process.env.VERSIONS_TIMEOUT,
     cache: process.env.VERSIONS_CACHE,
-    refreshSecret: process.env.GITHUB_SECRET,
-
-    onAPIAccess: function(req, res, next) {
-        if (!apiAuth.username) return next();
-
-        function unauthorized(res) {
-            res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-            return res.send(401);
-        };
-
-        var user = basicAuth(req);
-
-        if (!user || !user.name || !user.pass) {
-            return unauthorized(res);
-        };
-
-        if (user.name === apiAuth.username && user.pass === apiAuth.password) {
-            return next();
-        } else {
-            return unauthorized(res);
-        };
-    }
+    refreshSecret: process.env.GITHUB_SECRET
 });
 
 // Control access to API
@@ -56,7 +35,7 @@ myNuts.before('api', function(access, next) {
         next(new Error('Invalid username/password for API'));
     };
 
-    var user = basicAuth(req);
+    var user = basicAuth(access.req);
     if (!user || !user.name || !user.pass) {
         return unauthorized();
     };
