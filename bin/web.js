@@ -58,7 +58,7 @@ myNuts.after('download', function(download, next) {
 
     // Track on segment if enabled
     if (analytics) {
-        var userId = req.query.user;
+        var userId = download.req.query.user;
 
         analytics.track({
             event: downloadEvent,
