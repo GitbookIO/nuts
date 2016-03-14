@@ -18,6 +18,8 @@ describe('Platforms', function() {
 
         it('should detect linux', function() {
             platforms.detect('atom-amd64.deb').should.be.exactly(platforms.LINUX_64);
+            platforms.detect('enterprise-amd64.tar.gz').should.be.exactly(platforms.LINUX_64);
+            platforms.detect('enterprise-amd64.tgz').should.be.exactly(platforms.LINUX_64);
         });
 
     });
