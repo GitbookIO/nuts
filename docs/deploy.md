@@ -6,6 +6,12 @@ Nuts can be easily be deployed to a state-less server or PaaS.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+### With docker
+
+```
+docker run -it -p 80:80 -e GITHUB_REPO=username/repo gitbook/nuts
+```
+
 ### On your own server:
 
 Install dependencies using:
