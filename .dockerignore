@@ -1,0 +1,13 @@
+node_modules/
+docs/
+test/
+schema.png
+CHANGES.md
+LICENSE
+README.md
+Procfile
+.eslintrc
+.git/
+.gitignore
+.npmignore
+.travis.yml
