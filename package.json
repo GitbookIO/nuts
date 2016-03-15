@@ -16,7 +16,7 @@
         "request": "2.60.0",
         "basic-auth": "1.0.3",
         "express-useragent": "0.1.9",
-        "lru-diskcache": "1.0.0",
+        "lru-diskcache": "1.1.1",
         "stream-res": "1.0.1",
         "analytics-node": "1.2.2",
         "uuid": "2.0.1",
