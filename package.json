@@ -17,6 +17,7 @@
         "basic-auth": "1.0.3",
         "express-useragent": "0.1.9",
         "lru-diskcache": "1.0.0",
+        "stream-res": "1.0.1",
         "analytics-node": "1.2.2",
         "uuid": "2.0.1",
         "github-webhook-handler": "0.5.0",
