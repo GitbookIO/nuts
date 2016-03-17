@@ -1,12 +1,14 @@
-# Assets for releases
+# Upload assets for releases
 
-Nuts uses GitHub releases and assets to serve the right file to the right user.
+Nuts uses GitHub Releases and assets to serve the right file to the right user.
 
-### Filename
+See GitHub guides: [About Releases](https://help.github.com/articles/about-releases/) & [Creating Releases](https://help.github.com/articles/creating-releases/).
 
-It uses some filename/extension conventions to serve the correct asset to a specific request:
+### Naming
 
-Platform will be detected from the filename:
+Nuts uses some filename/extension conventions to serve the correct asset to a specific request:
+
+The platform/OS will be detected from the filename:
 
 - Windows: filename should contain `win`
 - Mac/OS X: filename should contain `mac` or `osx`
@@ -23,7 +25,7 @@ Filetype and usage will be detected from the extension:
 | Linux | `.deb`, `.rpm`, `.zip` |
 
 
-## Example
+### Example
 
 Here is a list of files in one of the latest release of our [GitBook Editor](https://www.gitbook.com/editor):
 
