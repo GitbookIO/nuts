@@ -29,6 +29,7 @@ It uses GitHub as a backend to store assets, and it can easily be deployed to He
 - :sparkles: Release notes endpoint
     - `/notes/:version`
 - :sparkles: Up-to-date releases (GitHub webhooks)
+- :sparkles: Atom/RSS feeds for versions/channels
 
 #### Deploy it / Start it
 

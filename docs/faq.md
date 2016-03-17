@@ -29,3 +29,7 @@ By default releases are tagged as 32-bits (except for OSX), but 64-bits will als
 ### How should I tag my releases?
 
 Nuts requires applications to follow [SemVer](http://semver.org). And even if you're not using Nuts, you should follow it!
+
+### Does nuts provide an Atom feed of versions?
+
+Yes, [See Feed URLS](./urls.md).
