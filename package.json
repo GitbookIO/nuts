@@ -13,6 +13,7 @@
     "express": "^4.13.3",
     "express-useragent": "0.1.9",
     "feed": "^0.3.0",
+    "getenv": "^0.6.0",
     "github-webhook-handler": "0.5.0",
     "lodash": "3.7.0",
     "lru-diskcache": "1.1.1",

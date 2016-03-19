@@ -1,4 +1,5 @@
 var express = require('express');
+var getenv = require('getenv');
 var uuid = require('uuid');
 var basicAuth = require('basic-auth');
 var Analytics = require('analytics-node');
@@ -19,13 +20,14 @@ if (process.env.ANALYTICS_TOKEN) {
 
 var myNuts = nuts.Nuts({
     repository: process.env.GITHUB_REPO,
+    anonymous: getenv.boolish('GITHUB_ANONYMOUS', false),
     token: process.env.GITHUB_TOKEN,
     username: process.env.GITHUB_USERNAME,
     password: process.env.GITHUB_PASSWORD,
     timeout: process.env.VERSIONS_TIMEOUT,
     cache: process.env.VERSIONS_CACHE,
     refreshSecret: process.env.GITHUB_SECRET,
-    proxyAssets: !Boolean(process.env.DONT_PROXY_ASSETS)
+    proxyAssets: !getenv.boolish('DONT_PROXY_ASSETS', false)
 });
 
 // Control access to API
