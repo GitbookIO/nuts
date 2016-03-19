@@ -77,6 +77,10 @@ myNuts.after('download', function(download, next) {
     next();
 });
 
+if (process.env.TRUST_PROXY) {
+  app.set('trust proxy', process.env.TRUST_PROXY);
+}
+
 app.use(myNuts.router);
 
 // Error handling

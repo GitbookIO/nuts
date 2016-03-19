@@ -41,6 +41,11 @@ $ export GITHUB_REPO=Username/MyApp
 # Authentication for the private API
 $ export API_USERNAME=hello
 $ export API_PASSWORD=world
+
+# Express's "trust proxy" setting for trusting X-Forwarded-* headers when
+# behind a reverse proxy like nginx
+# http://expressjs.com/en/guide/behind-proxies.html
+$ export TRUST_PROXY=loopback
 ```
 
 Then start the application using:
