@@ -78,7 +78,13 @@ myNuts.after('download', function(download, next) {
 });
 
 if (process.env.TRUST_PROXY) {
-  app.set('trust proxy', process.env.TRUST_PROXY);
+    try {
+        var trustProxyObject = JSON.parse(process.env.TRUST_PROXY);
+        app.set('trust proxy', trustProxyObject);
+    }
+    catch (e) {
+        app.set('trust proxy', process.env.TRUST_PROXY);
+    }
 }
 
 app.use(myNuts.router);
