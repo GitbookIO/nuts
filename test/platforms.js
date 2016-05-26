@@ -13,6 +13,7 @@ describe('Platforms', function() {
         it('should detect windows_32', function() {
             platforms.detect('myapp-v0.25.1-win32-ia32.zip').should.be.exactly(platforms.WINDOWS_32);
             platforms.detect('atom-1.0.9-delta.nupkg').should.be.exactly(platforms.WINDOWS_32);
+            platforms.detect('TestSetup.msi').should.be.exactly(platforms.WINDOWS_32);
             platforms.detect('RELEASES').should.be.exactly(platforms.WINDOWS_32);
         });
 
@@ -78,6 +79,14 @@ describe('Platforms', function() {
                     "content_type": "application/zip",
                     "download_url": "https://api.github.com/repos/atom/atom/releases/assets/825728",
                     "download_count": 5612
+                },
+                {
+                    "type": "windows_32",
+                    "filename": "TestSetup.msi",
+                    "size": 78675700,
+                    "content_type": "application/x-msi",
+                    "download_url": "https://api.github.com/repos/test/test2/releases/assets/7938398",
+                    "download_count": 1
                 }
             ]
         };
@@ -91,7 +100,11 @@ describe('Platforms', function() {
         it('should resolve to best platform with a preferred filetype', function() {
             platforms.resolve(version, 'osx', {
                 filePreference: ['.zip']
-            }).filename.should.be.exactly("test-3.3.1-darwin-x64.zip")
+            }).filename.should.be.exactly("test-3.3.1-darwin-x64.zip"),
+
+            platforms.resolve(version, 'win32', {
+                filePreference: ['.msi']
+            }).filename.should.be.exactly("TestSetup.msi")
         });
 
         it('should resolve to best platform with a wanted filetype', function() {
