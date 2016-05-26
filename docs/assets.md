@@ -20,7 +20,7 @@ Filetype and usage will be detected from the extension:
 
 | Platform | Extensions (sorted by priority) |
 | -------- | ---------- |
-| Windows | `.exe`, `.nupkg`, `.zip` |
+| Windows | `.exe`, `.nupkg`, `.zip`, `.msi` |
 | OS X | `.dmg`, `.zip` |
 | Linux | `.deb`, `.rpm`, `.zip` |
 
