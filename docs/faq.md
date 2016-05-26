@@ -20,7 +20,7 @@ Since version 3.0.0, Nuts can works with [other backends](https://github.com/Git
 
 Nuts can detect the type of file from its filename, there is no strict policy on file naming. Nuts tries to respect the filename/extension conventions for the different platforms. request:)
 
-- Windows: `.exe`, `.nupkg` etc
+- Windows: `.exe`, `.nupkg`, `.msi` etc
 - Linux: `.deb`, `.tar.gz`, etc
 - OS X: `.dmg`, etc
 
