@@ -6,13 +6,6 @@ var nuts = require('../');
 var fs = require('fs');
 var https = require('https');
 
-var key = fs.readFileSync(process.env.HTTPS_KEYFILE);
-var cert = fs.readFileSync(process.env.HTTPS_CERTFILE);
-
-var https_options = {
-   key: key,
-   cert: cert
-};
 
 var app = express();
 
@@ -26,6 +19,36 @@ var downloadEvent = process.env.ANALYTICS_EVENT_DOWNLOAD || 'download';
 if (process.env.ANALYTICS_TOKEN) {
     analytics = new Analytics(process.env.ANALYTICS_TOKEN);
 }
+
+// Set up for https termination
+var key = "", cert = ""
+
+if (process.env.HTTPS_KEYFILE !== 'undefined') {
+    try {
+        key = fs.readFileSync(process.env.HTTPS_KEYFILE);
+    } catch (e) {
+        if (e.code === 'ENOENT') {
+          console.log('Key file not found!');
+        } else {
+          throw e;
+        }
+    }
+}
+if (process.env.HTTPS_CERTFILE !== 'undefined') {
+    try {
+        cert = fs.readFileSync(process.env.HTTPS_CERTFILE);
+    } catch (e) {
+        if (e.code === 'ENOENT') {
+          console.log('Certificate file not found!');
+        } else {
+          throw e;
+        }
+    }
+}
+var https_options = {
+   key: key,
+   cert: cert
+};
 
 var myNuts = nuts.Nuts({
     repository: process.env.GITHUB_REPO,
