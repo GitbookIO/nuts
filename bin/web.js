@@ -3,6 +3,16 @@ var uuid = require('uuid');
 var basicAuth = require('basic-auth');
 var Analytics = require('analytics-node');
 var nuts = require('../');
+var fs = require('fs');
+var https = require('https');
+
+var key = fs.readFileSync(process.env.HTTPS_KEYFILE);
+var cert = fs.readFileSync(process.env.HTTPS_CERTFILE);
+
+var https_options = {
+   key: key,
+   cert: cert
+};
 
 var app = express();
 
@@ -118,8 +128,19 @@ app.use(function(err, req, res, next) {
 
 myNuts.init()
 
-// Start the HTTP server
+// Start the HTTP and/or HTTPS server
 .then(function() {
+
+    // Enable https endpoint if key and cert are set
+    if(key != "" && cert != "") {
+        var https_server = https.createServer(https_options, app).listen(process.env.HTTPSPORT || 5001, function () {
+            var hosts = https_server.address().address;
+            var ports = https_server.address().port;
+
+            console.log('Listening at https://%s:%s', hosts, ports);
+        });
+    }
+
     var server = app.listen(process.env.PORT || 5000, function () {
         var host = server.address().address;
         var port = server.address().port;
