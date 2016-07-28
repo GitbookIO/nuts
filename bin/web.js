@@ -20,6 +20,7 @@ if (process.env.ANALYTICS_TOKEN) {
 var myNuts = nuts.Nuts({
     repository: process.env.GITHUB_REPO,
     token: process.env.GITHUB_TOKEN,
+    endpoint: process.env.GITHUB_ENDPOINT,
     username: process.env.GITHUB_USERNAME,
     password: process.env.GITHUB_PASSWORD,
     timeout: process.env.VERSIONS_TIMEOUT,
@@ -120,7 +121,7 @@ myNuts.init()
 
 // Start the HTTP server
 .then(function() {
-    var server = app.listen(process.env.PORT || 5000, function () {
+    var server = app.listen(process.env.VCAP_APP_PORT || process.env.PORT || 5000, function () {
         var host = server.address().address;
         var port = server.address().port;
 
