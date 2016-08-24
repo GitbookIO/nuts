@@ -1,4 +1,4 @@
-var should = require('should');
+require('should');
 var winReleases = require('../lib/utils/win-releases');
 
 describe('Windows RELEASES', function() {
@@ -24,7 +24,7 @@ describe('Windows RELEASES', function() {
             winReleases.toSemver('1.0.0.2001').should.be.exactly('1.0.0-beta.1');
             winReleases.toSemver('1.0.0.2015').should.be.exactly('1.0.0-beta.15');
             winReleases.toSemver('1.0.0').should.be.exactly('1.0.0');
-        })
+        });
 
     });
 
@@ -43,7 +43,7 @@ describe('Windows RELEASES', function() {
         });
 
         it('should parse a one-line file (with utf-8 BOM)', function() {
-            var oneRelease = winReleases.parse("\uFEFF24182FAD211FB9EB72610B1C086810FE37F70AE3 gitbook-editor-4.0.0-full.nupkg 46687158");
+            var oneRelease = winReleases.parse('\uFEFF24182FAD211FB9EB72610B1C086810FE37F70AE3 gitbook-editor-4.0.0-full.nupkg 46687158');
             oneRelease.length.should.be.exactly(1);
         });
 
@@ -67,8 +67,8 @@ describe('Windows RELEASES', function() {
         });
 
         it('should correctly parse versions', function() {
-            releases[0].version.should.be.exactly("0.178.0");
-            releases[1].version.should.be.exactly("0.178.1");
+            releases[0].version.should.be.exactly('0.178.0');
+            releases[1].version.should.be.exactly('0.178.1');
         });
 
     });
