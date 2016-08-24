@@ -1,12 +1,8 @@
-var testRequest = require('supertest');
+var request = require('supertest');
 var app = require('./app');
 
 describe('Download', function() {
-    var agent;
-
-    before(function() {
-        agent = testRequest.agent(app);
-    });
+    var agent = request.agent(app);
 
     describe('Latest version', function() {
 
