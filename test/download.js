@@ -1,5 +1,5 @@
 var request = require('supertest');
-var app = require('./app');
+var app = require('./testing').app;
 
 var MAC_USERAGENT = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; en-us)'
         + ' AppleWebKit/530.19.2 (KHTML, like Gecko) Version/4.0.2 Safari/530.19';
