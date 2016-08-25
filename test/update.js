@@ -46,6 +46,16 @@ describe('Update', function() {
                 })
                 .expect(200, done);
             });
+
+            it('should return a 200 with json if using old alpha version (1)', function(done) {
+                agent
+                .get('/update/osx/0.9.2-alpha.2')
+                .expect('Content-Type', /json/)
+                .expect(function(res) {
+                    expect(res.body.name).toBe('1.0.0');
+                })
+                .expect(200, done);
+            });
         });
 
         describe('/update/channel/beta/osx', function() {

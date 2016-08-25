@@ -7,7 +7,7 @@ describe('Versions', function() {
         it('should list all versions', function() {
             return versions.list()
             .then(function(out) {
-                expect(out.length).toEqual(6);
+                expect(out.length).toEqual(7);
             });
         });
     });
@@ -25,12 +25,12 @@ describe('Versions', function() {
 
         it('should filter correctly by tag name (stripChannel)', function() {
             return versions.filter({
-                tag: '>=0.9.0',
+                tag: '>=1.0.0',
                 channel: '*',
                 stripChannel: true
             })
             .then(function(out) {
-                expect(out.length).toEqual(6);
+                expect(out.length).toEqual(3);
             });
         });
 

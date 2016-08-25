@@ -48,6 +48,6 @@
   },
   "scripts": {
     "start": "node bin/web.js",
-    "test": "mocha --reporter spec --timeout 600000 ./test/all.js"
+    "test": "mocha --bail --reporter spec --timeout 600000 ./test/all.js"
   }
 }
