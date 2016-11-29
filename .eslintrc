@@ -11,7 +11,8 @@
         "spaced-comment": [ 2, "always" ]
     },
     "env": {
-        "node": true
+        "node": true,
+        "mocha": true
     },
     "extends": "eslint:recommended"
 }
