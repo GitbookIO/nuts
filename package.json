@@ -7,6 +7,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "analytics-node": "1.2.2",
+    "aws-sdk": "^2.6.6",
     "basic-auth": "1.0.3",
     "body-parser": "1.12.3",
     "destroy": "1.0.3",
