@@ -31,7 +31,6 @@ This service requires to be configured using environment variables:
 $ export PORT=6000
 
 # Access token for the GitHub API (requires permissions to access the repository)
-# If the repository is public you do not need to provide an access token
 # you can also use GITHUB_USERNAME and GITHUB_PASSWORD
 $ export GITHUB_TOKEN=...
 
