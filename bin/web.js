@@ -26,6 +26,9 @@ var myNuts = nuts.Nuts({
     timeout: process.env.VERSIONS_TIMEOUT,
     cache: process.env.VERSIONS_CACHE,
     refreshSecret: process.env.GITHUB_SECRET,
+    // The maximum version to support in the RELEASES.
+    // For multi-environment deploys where each environment may be limited to a certain version of the app.
+    maxVersion: process.env.NUTS_MAX_VERSION,
     proxyAssets: !Boolean(process.env.DONT_PROXY_ASSETS)
 });
 
