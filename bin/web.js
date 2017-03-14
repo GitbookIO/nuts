@@ -18,11 +18,24 @@ if (process.env.ANALYTICS_TOKEN) {
 }
 
 var myNuts = nuts.Nuts({
+    backend: process.env.NUTS_BACKEND,
     repository: process.env.GITHUB_REPO,
     token: process.env.GITHUB_TOKEN,
     endpoint: process.env.GITHUB_ENDPOINT,
     username: process.env.GITHUB_USERNAME,
     password: process.env.GITHUB_PASSWORD,
+    credentials: {
+        aws: {
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+        }
+    },
+    configuration: {
+        aws: {
+            bucket: process.env.AWS_BUCKET,
+            releasesPrefix: process.env.AWS_RELEASES_PREFIX
+        }
+    },
     timeout: process.env.VERSIONS_TIMEOUT,
     cache: process.env.VERSIONS_CACHE,
     refreshSecret: process.env.GITHUB_SECRET,
