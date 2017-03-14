@@ -27,8 +27,13 @@ $ npm install
 This service requires to be configured using environment variables:
 
 ```
-# Set the port for the service
+# Set the port for the http service
 $ export PORT=6000
+
+# Set the port for the https service (optional)
+$ export HTTPSPORT=6001
+$ export HTTPS_KEYFILE=<Full Path to Private Key File>
+$ export HTTPS_CERTFILE=<Full Path to Public Certificate File>
 
 # Access token for the GitHub API (requires permissions to access the repository)
 # If the repository is public you do not need to provide an access token
