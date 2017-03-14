@@ -1,4 +1,3 @@
-require('should');
 var platforms = require('../lib/utils/platforms');
 
 describe('Platforms', function() {

@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 var express = require('express');
 var uuid = require('uuid');
 var basicAuth = require('basic-auth');
@@ -18,15 +20,15 @@ if (process.env.ANALYTICS_TOKEN) {
 }
 
 var myNuts = nuts.Nuts({
-    repository: process.env.GITHUB_REPO,
-    token: process.env.GITHUB_TOKEN,
-    endpoint: process.env.GITHUB_ENDPOINT,
-    username: process.env.GITHUB_USERNAME,
-    password: process.env.GITHUB_PASSWORD,
-    timeout: process.env.VERSIONS_TIMEOUT,
-    cache: process.env.VERSIONS_CACHE,
+    repository:    process.env.GITHUB_REPO,
+    token:         process.env.GITHUB_TOKEN,
+    endpoint:      process.env.GITHUB_ENDPOINT,
+    username:      process.env.GITHUB_USERNAME,
+    password:      process.env.GITHUB_PASSWORD,
+    timeout:       process.env.VERSIONS_TIMEOUT,
+    cache:         process.env.VERSIONS_CACHE,
     refreshSecret: process.env.GITHUB_SECRET,
-    proxyAssets: !Boolean(process.env.DONT_PROXY_ASSETS)
+    proxyAssets:   !process.env.DONT_PROXY_ASSETS
 });
 
 // Control access to API
@@ -35,28 +37,28 @@ myNuts.before('api', function(access, next) {
 
     function unauthorized() {
         next(new Error('Invalid username/password for API'));
-    };
+    }
 
     var user = basicAuth(access.req);
     if (!user || !user.name || !user.pass) {
         return unauthorized();
-    };
+    }
 
     if (user.name === apiAuth.username && user.pass === apiAuth.password) {
         return next();
     } else {
         return unauthorized();
-    };
+    }
 });
 
 // Log download
 myNuts.before('download', function(download, next) {
-    console.log('download', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+    console.log('download', download.platform.filename, 'for version', download.version.tag, 'on channel', download.version.channel, 'for', download.platform.type);
 
     next();
 });
 myNuts.after('download', function(download, next) {
-    console.log('downloaded', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+    console.log('downloaded', download.platform.filename, 'for version', download.version.tag, 'on channel', download.version.channel, 'for', download.platform.type);
 
     // Track on segment if enabled
     if (analytics) {
@@ -92,7 +94,7 @@ app.use(myNuts.router);
 
 // Error handling
 app.use(function(req, res, next) {
-    res.status(404).send("Page not found");
+    res.status(404).send('Page not found');
 });
 app.use(function(err, req, res, next) {
     var msg = err.message || err;
