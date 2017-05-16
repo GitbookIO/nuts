@@ -16,6 +16,10 @@ Where download.myapp.com, is the URL of your Nuts server.
 
 It'll refresh versions cache everytime you update a release on GitHub.
 
+### Content Type
+
+Make sure to set the Webhook content type to "application/json" instead of the default "application/x-www-form-urlencoded".
+
 ### Secret
 
 The GitHub Webhook secret can be configured as a environment variable on Nuts: `GITHUB_SECRET` (default value is `secret`).
