@@ -21,10 +21,12 @@
     "request": "2.60.0",
     "semver": "5.0.1",
     "stream-res": "1.0.1",
+    "stream-to-string": "^1.1.0",
     "strip-bom": "2.0.0",
     "understudy": "4.1.0",
     "urljoin.js": "0.1.0",
-    "uuid": "2.0.1"
+    "uuid": "2.0.1",
+    "yamljs": "^0.2.10"
   },
   "devDependencies": {
     "mocha": "1.18.2",
