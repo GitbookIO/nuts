@@ -22,7 +22,7 @@ Filetype and usage will be detected from the extension:
 | -------- | ---------- |
 | Windows | `.exe`, `.nupkg`, `.zip` |
 | OS X | `.dmg`, `.zip` |
-| Linux | `.deb`, `.rpm`, `.zip` |
+| Linux | `.AppImage`, `.deb`, `.rpm`, `.zip` |
 
 
 ### Example
