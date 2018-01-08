@@ -23,6 +23,14 @@ describe('Platforms', function() {
             platforms.detect('enterprise-ia32.tgz').should.be.exactly(platforms.LINUX_32);
         });
 
+        it('should detect AppImage_32', function() {
+            platforms.detect('appimaged-i686.AppImage').should.be.exactly(platforms.LINUX_APPIMAGE_32);
+        });
+
+        it('should detect AppImage_64', function() {
+            platforms.detect('appimaged-x86_64.AppImage').should.be.exactly(platforms.LINUX_APPIMAGE_64);
+        });
+
         it('should detect debian_32', function() {
             platforms.detect('atom-ia32.deb').should.be.exactly(platforms.LINUX_DEB_32);
         });
@@ -89,6 +97,22 @@ describe('Platforms', function() {
                     'download_count': 2494
                 },
                 {
+                    'type': 'linux_AppImage_32',
+                    'filename': 'appimaged-i686.AppImage',
+                    'size': 244728,
+                    'content_type': 'application/octet-stream',
+                    'download_url': 'https://api.github.com/repos/AppImage/AppImageKit/releases/assets/5295931',
+                    'download_count': 55
+                },
+                {
+                    'type': 'linux_AppImage_64',
+                    'filename': 'appimaged-x86_64.AppImage',
+                    'size': 244728,
+                    'content_type': 'application/octet-stream',
+                    'download_url': 'https://api.github.com/repos/AppImage/AppImageKit/releases/assets/5295938',
+                    'download_count': 55
+                },
+                {
                     'type': 'linux_rpm_32',
                     'filename': 'atom-ia32.rpm',
                     'size': 71292506,
@@ -145,6 +169,8 @@ describe('Platforms', function() {
             platforms.resolve(version, 'win32').filename.should.be.exactly('AtomSetup.exe');
             platforms.resolve(version, 'linux_64').filename.should.be.exactly('atom-amd64.tar.gz');
             platforms.resolve(version, 'linux_32').filename.should.be.exactly('atom-ia32.tar.gz');
+            platforms.resolve(version, 'linux_AppImage_32').filename.should.be.exactly('appimaged-i686.AppImage');
+            platforms.resolve(version, 'linux_AppImage_64').filename.should.be.exactly('appimaged-x86_64.AppImage');
             platforms.resolve(version, 'linux_rpm_32').filename.should.be.exactly('atom-ia32.rpm');
             platforms.resolve(version, 'linux_rpm_64').filename.should.be.exactly('atom-amd64.rpm');
             platforms.resolve(version, 'linux_deb_32').filename.should.be.exactly('atom-ia32.deb');
