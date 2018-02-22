@@ -16,6 +16,9 @@
         },
         "API_PASSWORD": {
             "description": "Password for private API access"
+        },
+        "ROUTE_PREFIX": {
+            "description": "Custom prefix for all routes, defaults to /"
         }
     }
 }
