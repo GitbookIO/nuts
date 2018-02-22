@@ -18,6 +18,7 @@ if (process.env.ANALYTICS_TOKEN) {
 }
 
 var myNuts = nuts.Nuts({
+    routePrefix: process.env.ROUTE_PREFIX,
     repository: process.env.GITHUB_REPO,
     token: process.env.GITHUB_TOKEN,
     endpoint: process.env.GITHUB_ENDPOINT,
