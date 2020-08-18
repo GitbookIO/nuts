@@ -1,0 +1,134 @@
+# More examples of Codefresh YAML can be found at
+# https://codefresh.io/docs/docs/yaml-examples/examples/
+
+version: "1.0"
+# Stages can help you organize your steps in stages
+stages:
+  - "clone"
+  - "build"
+  - "test"
+  - "deploy"
+
+define_variables:
+    title: Define CodeFresh vars
+    description: "Define the variables we will need to create a namespace and assign to a Rancher Project"
+    image: alpine:latest
+    commands:
+      - cf_export BRANCH_NAME_LOWER=$CF_BRANCH_TAG_NORMALIZED_LOWER_CASE
+    stage: Execute
+
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "pdq/nuts"
+    # CF_BRANCH value is auto set when pipeline is triggered
+    # Learn more at codefresh.io/docs/docs/codefresh-yaml/variables/
+    revision: "${{CF_BRANCH}}"
+    git: "github"
+    stage: "clone"
+
+  build:
+    title: "Building Docker image"
+    type: "build"
+    image_name: "nuts"
+    working_directory: "${{clone}}"
+    tag: "${{BRANCH_NAME_LOWER}}-${{CF_SHORT_REVISION}}"
+    dockerfile: "Dockerfile"
+    stage: "build"
+
+  test:
+    title: "Running test"
+    type: "freestyle" # Run any command
+    image: "ubuntu:latest" # The image in which command will be executed
+    working_directory: "${{clone}}" # Running command where code cloned
+    commands:
+      - "ls"
+    stage: "test"
+  
+  create_namespace_in_stage:
+    title: Create dynamic namespace
+    description: "Creates a new namespace and sets it to the rancher library project"
+    image: codefresh/kubectl
+    commands:
+      - kubectl config use-context $GKE_DEV_KUBE_CONTEXT
+      - >-
+        if [[ "$(kubectl get namespaces $BRANCH_NAME_LOWER --ignore-not-found)" ]]; then
+          echo "namespace $BRANCH_NAME_LOWER found";
+          else
+          kubectl create namespace $BRANCH_NAME_LOWER;
+        fi
+      - kubectl annotate namespace $BRANCH_NAME_LOWER field.cattle.io/projectId=$PROJECTID --overwrite=true
+    stage: deploy
+
+  create_dns_record:
+    title: Create a DNS record for branch
+    description: "Create a DigitalOcean DNS A record for this branch in PDQ.tools."
+    image: digitalocean/doctl
+    working_directory: /app
+    commands:
+      - >-
+        RECORD_ID="$(./doctl -t $DIGITALOCEAN_ACCESS_TOKEN compute domain records list pdq.tools | grep ^"$BRANCH_NAME_LOWER"$ | awk '{print $1;}')";
+        if [[ -z "$RECORD_ID" ]]; then
+          ./doctl -t $DIGITALOCEAN_ACCESS_TOKEN compute domain records create pdq.tools --record-type A --record-name $BRANCH_NAME_LOWER --record-data $GKE_DEV_LOADBALANCER --record-ttl $DNS_RECORD_TTL;
+        else
+          echo "DNS record already exists";
+    stage: deploy
+
+  create_secrets_in_new_namespace:
+    title: Create Secrets
+    description: "Writes or overwrites secrets in branch namespace"
+    # Skip this step if secrets connected to Rancher project for secret management from project level
+    image: codefresh/kubectl
+    commands:
+      - kubectl config use-context $GKE_DEV_KUBE_CONTEXT
+      - >-
+        if [[ "$(kubectl get secrets gcr-pull-secret -n $BRANCH_NAME_LOWER --ignore-not-found)" ]]; then
+          kubectl delete secret -n $BRANCH_NAME_LOWER gcr-pull-secret;
+        else
+          echo "pull secret not found";
+        fi
+      - >-
+        echo $GCR_JSON_KEY | sed 's/\\n/\n/g' > ./gcr_json_key.json &&
+        kubectl create secret -n $BRANCH_NAME_LOWER
+        docker-registry gcr-pull-secret
+        --docker-server=$GCR_SERVER_URL
+        --docker-username=$GCR_USER
+        --docker-password="$(cat ./gcr_json_key.json)"
+      - >-
+        if [[ "$(kubectl get secret splat-pdq-tools-cert -n $BRANCH_NAME_LOWER --ignore-not-found)" ]]; then
+          kubectl delete secret -n $BRANCH_NAME_LOWER splat-pdq-tools-cert;
+          else
+          echo "cert secret not found"
+        fi
+      - >-
+        echo $PDQ_TOOLS_CERT | sed 's/\\n/\n/g' > ./splat.cert &&
+        echo $PDQ_TOOLS_KEY | sed 's/\\n/\n/g' > ./splat.key &&
+        kubectl create secret tls -n $BRANCH_NAME_LOWER
+        splat-pdq-tools-cert
+        --cert=./splat.cert
+        --key=./splat.key
+    stage: deploy
+
+  helm_deploy:
+    title: Helm - Upgrade or install deployment
+    working_directory: "./nuts"
+    image: codefresh/cfstep-helm:3.0.2
+    commands:
+      - kubectl config use-context $GKE_DEV_KUBE_CONTEXT
+      - helm dep up
+      - >-
+        helm upgrade -n $BRANCH_NAME_LOWER nuts-stage .
+        --install
+        --set ingress.hosts.host=$BRANCH_NAME_LOWER.pdq.tools
+        --set image.tag=$BRANCH_NAME_LOWER-${{CF_SHORT_REVISION}}
+        --set image.repository=gcr.io/alert-rain-265215/nuts
+        --set ingress.tls.hosts[0]=$BRANCH_NAME_LOWER.pdq.tools
+        --set environments.port=${{NUTS_PORT}}
+        --set environments.githubToken=${{GITHUB_TOKEN}}
+        --set environments.githubRepo=pdq/library-manager-ui
+        --set environments.apiUsername=${{NUTS_API_USERNAME}}
+        --set environments.apiPassword=${{NUTS_API_PASSWORD}}
+        --set environments.trustProxy=${{NUTS_TRUST_PROXY}}
+
+    stage: deploy

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nuts.fullname" . }}
+  labels:
+    {{- include "nuts.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "nuts.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "nuts.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env: 
+            - name: PORT 
+              value: {{ .Values.environment.port }}
+            - name: GITHUB_TOKEN 
+              value: {{ .Values.environment.githubToken }}
+            - name: GITHUB_REPO 
+              value: {{ .Values.environment.githubRepo }}
+            - name: API_USERNAME 
+              value: {{ .Values.environment.apiUsername }}
+            - name: API_PASSWORD 
+              value: {{ .Values.environment.apiPassword }}
+            - name: TRUST_PROXY 
+              value: {{ .Values.environment.trustProxy }}
