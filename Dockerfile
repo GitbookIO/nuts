@@ -4,7 +4,7 @@ FROM mhart/alpine-node:5.8.0
 WORKDIR /app
 # Install deps
 COPY package.json ./
-RUN npm install --production
+RUN npm ci
 # Copy source
 COPY . ./
 
