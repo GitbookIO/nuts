@@ -75,6 +75,7 @@ steps:
           ./doctl -t $DIGITALOCEAN_ACCESS_TOKEN compute domain records create pdq.tools --record-type A --record-name $BRANCH_NAME_LOWER --record-data $GKE_DEV_LOADBALANCER --record-ttl $DNS_RECORD_TTL;
         else
           echo "DNS record already exists";
+        fi
     stage: deploy
 
   create_secrets_in_new_namespace:
