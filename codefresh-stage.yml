@@ -129,6 +129,5 @@ steps:
         --set environments.githubRepo=pdq/library-manager-ui
         --set environments.apiUsername=${{NUTS_API_USERNAME}}
         --set environments.apiPassword=${{NUTS_API_PASSWORD}}
-        --set environments.trustProxy=${{NUTS_TRUST_PROXY}}
-
+        --set environments.trustProxy=false
     stage: deploy
