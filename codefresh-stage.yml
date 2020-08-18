@@ -115,7 +115,7 @@ steps:
 
   helm_deploy:
     title: Helm - Upgrade or install deployment
-    working_directory: "./nuts"
+    working_directory: "./nuts/nuts"
     image: codefresh/cfstep-helm:3.0.2
     commands:
       - kubectl config use-context $GKE_DEV_KUBE_CONTEXT
