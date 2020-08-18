@@ -8,7 +8,7 @@
   "dependencies": {
     "analytics-node": "1.2.2",
     "basic-auth": "1.0.3",
-    "body-parser": "1.12.3",
+    "body-parser": "^1.19.0",
     "destroy": "1.0.3",
     "express": "^4.13.3",
     "express-useragent": "0.1.9",
