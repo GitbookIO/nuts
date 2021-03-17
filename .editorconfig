@@ -1,0 +1,19 @@
+# https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+
+# 4 space indentation
+[*.{js,ts,tsx,jsx,json}]
+indent_size = 2
+
+# Tab indentation (no size specified)
+[*.yml]
+indent_size = 4
