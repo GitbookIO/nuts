@@ -1,8 +1,8 @@
 {
   "name": "Nuts",
   "description": "Open source releases/downloads server with auto-updater",
-  "repository": "https://github.com/GitbookIO/nuts",
-  "website": "https://github.com/GitbookIO/nuts",
+  "repository": "https://github.com/biw/nuts",
+  "website": "https://github.com/biw/nuts",
   "keywords": ["releases", "download", "github", "squirrel", "desktop"],
   "env": {
     "GITHUB_REPO": {
@@ -18,7 +18,8 @@
       "description": "Password for private API access"
     },
     "ROUTE_PREFIX": {
-      "description": "Custom prefix for all routes, defaults to /"
+      "description": "Custom prefix for all routes, defaults to /",
+      "required": "false"
     }
   }
 }
