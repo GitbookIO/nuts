@@ -8,8 +8,4 @@ RUN yarn install --production
 # Copy source
 COPY . ./
 
-# Ports
-# ENV PORT 80
-# EXPOSE 80
-
 ENTRYPOINT ["yarn", "start"]

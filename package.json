@@ -1,5 +1,5 @@
 {
-  "name": "nuts-serve",
+  "name": "nuts",
   "version": "3.1.1",
   "description": "Server to make private GitHub releases available to download with Squirrel support",
   "main": "./lib/index.js",
@@ -38,7 +38,7 @@
     "should": "13.2.3"
   },
   "bugs": {
-    "url": "https://github.com/GitbookIO/nuts/issues"
+    "url": "https://github.com/biw/nuts/issues"
   },
   "authors": [
     {
@@ -46,9 +46,15 @@
       "email": "samypesse@gmail.com"
     }
   ],
+  "maintainers": [
+    {
+      "name": "Ben Williams",
+      "email": "github@biwills.com"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/GitbookIO/nuts.git"
+    "url": "https://github.com/biw/nuts.git"
   },
   "scripts": {
     "start": "node bin/web.js",
