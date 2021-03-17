@@ -37,27 +37,27 @@ commands:
 
 # based on https://github.com/nodejs/Release schedule
 jobs:
-    node_10:
+    node 10:
         docker:
             - image: circleci/node:10
         steps:
             - install_and_test
-    node_12:
+    node 12:
         docker:
             - image: circleci/node:12
         steps:
             - install_and_test
-    node_14:
+    node 14:
         docker:
             - image: circleci/node:14
         steps:
             - install_and_test
-    node_14_6:
+    node 14_6:
         docker:
             - image: circleci/node:14.6.0
         steps:
             - install_and_test
-    node_15:
+    node 15:
         docker:
             - image: circleci/node:15
         steps:
@@ -65,8 +65,8 @@ jobs:
 workflows:
     main:
         jobs:
-            - node_10
-            - node_12
-            - node_14
-            - node_14_6
-            - node_15
+            - node 10
+            - node 12
+            - node 14
+            - node 14_6
+            - node 15
