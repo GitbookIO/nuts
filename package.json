@@ -28,7 +28,7 @@
     "uuid": "2.0.1"
   },
   "devDependencies": {
-    "expect": "^1.20.2",
+    "expect": "^26.6.2",
     "mocha": "1.18.2",
     "should": "7.0.4",
     "supertest": "^2.0.0"

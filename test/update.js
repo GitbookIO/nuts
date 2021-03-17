@@ -21,8 +21,8 @@ describe('Update', function() {
                 .expect('Content-Type', /json/)
                 .expect(function(res) {
                     expect(res.body.name).toBe('1.0.0');
-                    expect(res.body.url).toExist();
-                    expect(res.body.pub_date).toExist();
+                    expect(res.body.url).toBeTruthy();
+                    expect(res.body.pub_date).toBeTruthy();
                 })
                 .expect(200, done);
             });
