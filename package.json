@@ -63,7 +63,7 @@
   "scripts": {
     "start": "node bin/web.js",
     "dev": "export $(grep -v '^#' .env | xargs) && nodemon bin/web.js",
-    "test": "mocha --bail --reporter spec --timeout 600000 ./test/all.js",
+    "test": "export $(grep -v '^#' .env | xargs) && mocha --bail --reporter spec --timeout 600000 ./test/all.js",
     "lint": "eslint bin lib test"
   }
 }

@@ -32,7 +32,6 @@ var myNuts = nuts.Nuts({
 
 // Control access to API
 myNuts.before("api", function (access, next) {
-  console.log("hey")
   if (!apiAuth.username) return next()
 
   function unauthorized() {
