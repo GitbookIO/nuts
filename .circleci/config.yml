@@ -55,11 +55,6 @@ jobs:
             - image: circleci/node:15
         steps:
             - install_and_test
-    node_16:
-        docker:
-            - image: circleci/node:16
-        steps:
-            - install_and_test
 workflows:
     main:
         jobs:
@@ -68,4 +63,3 @@ workflows:
             - node_13
             - node_14
             - node_15
-            - node_16
