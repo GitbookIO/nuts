@@ -1,47 +1,50 @@
 {
-    "name": "nuts-serve",
-    "version": "2.6.2",
-    "description": "Server to make GitHub releases (private) available to download with Squirrel support",
-    "main": "./lib/index.js",
-    "homepage": "https://github.com/GitbookIO/nuts",
-    "license": "Apache-2.0",
-    "main": "./lib/index.js",
-    "dependencies": {
-        "express": "^4.13.3",
-        "lodash": "3.7.0",
-        "q": "1.2.0",
-        "body-parser": "1.12.3",
-        "octonode": "0.7.1",
-        "semver": "5.0.1",
-        "request": "2.60.0",
-        "basic-auth": "1.0.3",
-        "express-useragent": "0.1.9",
-        "stores": "0.0.2",
-        "analytics-node": "1.2.2",
-        "uuid": "2.0.1",
-        "github-webhook-handler": "0.5.0",
-        "strip-bom": "2.0.0",
-        "destroy": "1.0.3"
-    },
-    "devDependencies": {
-        "mocha": "1.18.2",
-        "should": "7.0.4"
-    },
-    "bugs": {
-        "url": "https://github.com/GitbookIO/nuts/issues"
-    },
-    "authors": [
-        {
-            "name": "Samy Pesse",
-            "email": "samypesse@gmail.com"
-        }
-    ],
-    "repository": {
-        "type" : "git",
-        "url" : "https://github.com/GitbookIO/nuts.git"
-    },
-    "scripts": {
-        "start": "node bin/web.js",
-        "test": "mocha --reporter list"
+  "name": "nuts-serve",
+  "version": "3.1.1",
+  "description": "Server to make GitHub releases (private) available to download with Squirrel support",
+  "main": "./lib/index.js",
+  "homepage": "https://github.com/GitbookIO/nuts",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "analytics-node": "2.1.1",
+    "basic-auth": "1.0.3",
+    "body-parser": "1.12.3",
+    "destroy": "1.0.3",
+    "express": "^4.13.3",
+    "express-useragent": "0.1.9",
+    "feed": "^0.3.0",
+    "github-webhook-handler": "0.5.0",
+    "lodash": "3.7.0",
+    "lru-diskcache": "1.1.1",
+    "octocat": "0.12.1",
+    "q": "1.2.0",
+    "request": "2.74.0",
+    "semver": "5.0.1",
+    "stream-res": "1.0.1",
+    "strip-bom": "2.0.0",
+    "understudy": "4.1.0",
+    "urljoin.js": "0.1.0",
+    "uuid": "2.0.1"
+  },
+  "devDependencies": {
+    "mocha": "1.18.2",
+    "should": "7.0.4"
+  },
+  "bugs": {
+    "url": "https://github.com/GitbookIO/nuts/issues"
+  },
+  "authors": [
+    {
+      "name": "Samy Pesse",
+      "email": "samypesse@gmail.com"
     }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GitbookIO/nuts.git"
+  },
+  "scripts": {
+    "start": "node bin/web.js",
+    "test": "mocha --reporter list"
+  }
 }
