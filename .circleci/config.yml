@@ -12,12 +12,12 @@ commands:
                       - dependencies-linux-root-
             - run:
                   name: yarn ➡ install
-                  command: yarn
+                  command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
             - save_cache:
                   name: save cache
-                  paths:
-                      - ~/repo/node_modules
                   key: dependencies-linux-root-{{ checksum "yarn.lock" }}
+                  paths:
+                      - ~/.cache/yarn
     run_all_tests:
         steps:
             - run:
@@ -47,11 +47,6 @@ jobs:
             - image: circleci/node:12
         steps:
             - install_and_test
-    node_13:
-        docker:
-            - image: circleci/node:13
-        steps:
-            - install_and_test
     node_14:
         docker:
             - image: circleci/node:14
@@ -72,7 +67,6 @@ workflows:
         jobs:
             - node_10
             - node_12
-            - node_13
             - node_14
             - node_14_6
             - node_15
