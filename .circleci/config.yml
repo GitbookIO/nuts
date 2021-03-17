@@ -50,6 +50,11 @@ jobs:
             - image: circleci/node:14
         steps:
             - install_and_test
+    node_14:
+        docker:
+            - image: circleci/node:14.6.0
+        steps:
+            - install_and_test
     node_15:
         docker:
             - image: circleci/node:15
