@@ -27,7 +27,7 @@ commands:
         steps:
             - run:
                   name: yarn lint
-                  command: yarn lint
+                  command: CI=true yarn lint
 
     install_and_test:
         steps:
