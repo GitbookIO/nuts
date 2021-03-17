@@ -23,10 +23,17 @@ commands:
             - run:
                   name: yarn test
                   command: yarn test
+    lint:
+        steps:
+            - run:
+                  name: yarn lint
+                  command: yarn lint
+
     install_and_test:
         steps:
             - install_and_cache_yarn_linux
             - run_all_tests
+            - lint
 
 # based on https://github.com/nodejs/Release schedule
 jobs:
@@ -50,7 +57,7 @@ jobs:
             - image: circleci/node:14
         steps:
             - install_and_test
-    node_14:
+    node_14_6:
         docker:
             - image: circleci/node:14.6.0
         steps:
@@ -67,4 +74,5 @@ workflows:
             - node_12
             - node_13
             - node_14
+            - node_14_6
             - node_15
