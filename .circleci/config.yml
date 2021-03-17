@@ -1,0 +1,65 @@
+version: 2.1
+
+commands:
+    install_and_cache_yarn_linux:
+        steps:
+            - checkout
+            - restore_cache:
+                  name: restore cache ➡ root
+                  keys:
+                      - dependencies-linux-root-{{ checksum "yarn.lock" }}
+                      # fallback to using the latest cache if no exact match is found
+                      - dependencies-linux-root-
+            - run:
+                  name: yarn ➡ install
+                  command: yarn
+            - save_cache:
+                  name: save cache
+                  paths:
+                      - ~/repo/node_modules
+                  key: dependencies-linux-root-{{ checksum "yarn.lock" }}
+    run_all_tests:
+        steps:
+            - run:
+                  name: yarn test
+                  command: yarn test
+    install_and_test:
+        steps:
+            - install_and_cache_yarn_linux
+            - run_all_tests
+
+# based on https://github.com/nodejs/Release schedule
+jobs:
+    node_10:
+        docker:
+            - image: circleci/node:10
+        steps:
+            - install_and_test
+    node_12:
+        docker:
+            - image: circleci/node:12
+        steps:
+            - install_and_test
+    node_13:
+        docker:
+            - image: circleci/node:13
+        steps:
+            - install_and_test
+    node_14:
+        docker:
+            - image: circleci/node:14
+        steps:
+            - install_and_test
+    node_15:
+        docker:
+            - image: circleci/node:15
+        steps:
+            - install_and_test
+workflows:
+    main:
+        jobs:
+            - node_10
+            - node_12
+            - node_13
+            - node_14
+            - node_15
