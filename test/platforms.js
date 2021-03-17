@@ -1,4 +1,6 @@
+require("should")
 var platforms = require("../lib/utils/platforms")
+var useragent = require("express-useragent")
 
 describe("Platforms", function () {
   describe("Detect", function () {
@@ -17,6 +19,22 @@ describe("Platforms", function () {
         .detect("atom-1.0.9-delta.nupkg")
         .should.be.exactly(platforms.WINDOWS_32)
       platforms.detect("RELEASES").should.be.exactly(platforms.WINDOWS_32)
+    })
+
+    it("should detect windows_64", function () {
+      platforms.detect("MyApp-x64.exe").should.be.exactly(platforms.WINDOWS_64)
+      var chrome = useragent.parse(
+        "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36",
+      )
+      platforms
+        .detectPlatformByUserAgent(chrome)
+        .should.be.exactly(platforms.WINDOWS_64)
+      var edge = useragent.parse(
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586",
+      )
+      platforms
+        .detectPlatformByUserAgent(edge)
+        .should.be.exactly(platforms.WINDOWS_64)
     })
 
     it("should detect linux", function () {

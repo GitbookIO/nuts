@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 var express = require("express")
 var uuid = require("uuid")
 var basicAuth = require("basic-auth")
@@ -20,6 +18,7 @@ if (process.env.ANALYTICS_TOKEN) {
 }
 
 var myNuts = nuts.Nuts({
+  routePrefix: process.env.ROUTE_PREFIX,
   repository: process.env.GITHUB_REPO,
   token: process.env.GITHUB_TOKEN,
   endpoint: process.env.GITHUB_ENDPOINT,
@@ -33,6 +32,7 @@ var myNuts = nuts.Nuts({
 
 // Control access to API
 myNuts.before("api", function (access, next) {
+  console.log("hey")
   if (!apiAuth.username) return next()
 
   function unauthorized() {
