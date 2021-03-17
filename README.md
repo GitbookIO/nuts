@@ -53,4 +53,4 @@ This server provides an endpoint for [Squirrel auto-updater](https://github.com/
 [Check out the documentation](https://biw.github.io/nuts/) for more details.
 
 ## License
-**Apache License 2.0 ** copyleft [GitbookIO/nuts](https://github.com/GitbookIO/nuts/blob/master/LICENSE)
+**Apache License 2.0** copyleft [GitbookIO/nuts](https://github.com/GitbookIO/nuts/blob/master/LICENSE)
