@@ -20,5 +20,5 @@ var autoUpdater = require('auto-updater');
 var platform = os.platform() + '_' + os.arch();
 var version = app.getVersion();
 
-autoUpdater.setFeedURL('http://download.myapp.com/update/'+platform+'/'+version);
+autoUpdater.setFeedURL('https://download.myapp.com/update/'+platform+'/'+version);
 ```
