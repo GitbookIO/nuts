@@ -1,15 +1,11 @@
-FROM mhart/alpine-node:5.8.0
+# if you update this version, please update .circleci/config.yml
+FROM mhart/alpine-node:14.6.0
 
-# Switch to /app
-WORKDIR /app
 # Install deps
 COPY package.json ./
-RUN npm install --production
+COPY yarn.lock ./
+RUN yarn install --production
 # Copy source
 COPY . ./
 
-# Ports
-ENV PORT 80
-EXPOSE 80
-
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["yarn", "start"]
