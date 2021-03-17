@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+    web:
+        build: .
+        ports:
+            - "5000:5001"
+        env_file:
+            - .env
