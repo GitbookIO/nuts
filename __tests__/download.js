@@ -15,7 +15,7 @@ describe("Download", function () {
       agent.get("/").expect(400, done)
     })
 
-    it("should download windows file", function (done) {
+    it.only("should download windows file", function (done) {
       agent
         .get("/")
         .set("User-Agent", WIN_USERAGENT)

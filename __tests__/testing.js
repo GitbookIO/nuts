@@ -1,7 +1,7 @@
 var nuts = require("../lib")
 
 var config = {
-  repository: "SamyPesse/nuts-testing",
+  repository: "biw/nuts-testing-repo",
   token: process.env.GITHUB_TOKEN,
 }
 
