@@ -23,50 +23,52 @@ commands:
             - run:
                   name: yarn test
                   command: yarn test
-    lint:
-        steps:
-            - run:
-                  name: yarn lint
-                  command: CI=true yarn lint
-
     install_and_test:
         steps:
             - install_and_cache_yarn_linux
             - run_all_tests
-            - lint
 
 # based on https://github.com/nodejs/Release schedule
 jobs:
-    node v10:
+    Node v10:
         docker:
             - image: circleci/node:10
         steps:
             - install_and_test
-    node v12:
+    Node v12:
         docker:
             - image: circleci/node:12
         steps:
             - install_and_test
-    node v14:
+    Node v14:
         docker:
             - image: circleci/node:14
         steps:
             - install_and_test
-    node v14_6:
+    Node v14_16:
         docker:
-            - image: circleci/node:14.6.0
+            - image: circleci/node:14.16.0
         steps:
             - install_and_test
-    node v15:
+    Node v15:
         docker:
             - image: circleci/node:15
         steps:
             - install_and_test
+    Linting:
+        docker:
+            - image: circleci/node:14.16.0
+        steps:
+            - install_and_cache_yarn_linux
+            - run:
+                  name: yarn lint
+                  command: CI=true yarn lint
 workflows:
     main:
         jobs:
-            - node v10
-            - node v12
-            - node v14
-            - node v14_6
-            - node v15
+            - Linting
+            - Node v10
+            - Node v12
+            - Node v14
+            - Node v14_16
+            - Node v15
