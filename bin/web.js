@@ -27,7 +27,7 @@ var myNuts = nuts.Nuts({
   timeout: process.env.VERSIONS_TIMEOUT,
   cache: process.env.VERSIONS_CACHE,
   refreshSecret: process.env.GITHUB_SECRET,
-  proxyAssets: !process.env.DONT_PROXY_ASSETS,
+  proxyAssets: process.env.DONT_PROXY_ASSETS !== "true",
 })
 
 // Control access to API
