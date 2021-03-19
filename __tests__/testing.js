@@ -1,12 +1,11 @@
-var nuts = require("../lib")
+const nuts = require("../lib")
 
-var config = {
-  repository: "biw/awdao[uid wpaoduifuck",
+const config = {
   token: process.env.GITHUB_TOKEN,
 }
 
-var instance = nuts.Nuts(config)
-var app = nuts.createApp(config)
+const instance = nuts.Nuts(config)
+const app = nuts.createApp(config)
 
 module.exports = {
   app: app,
