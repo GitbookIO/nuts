@@ -1,7 +1,7 @@
 var nuts = require("../lib")
 
 var config = {
-  repository: "biw/nuts-testing-repo",
+  repository: "biw/awdao[uid wpaoduifuck",
   token: process.env.GITHUB_TOKEN,
 }
 
@@ -12,3 +12,8 @@ module.exports = {
   app: app,
   nuts: instance,
 }
+
+test("testing.js", () => {
+  // this is a blank test, need to refactor this file
+  expect(1).toEqual(1)
+})

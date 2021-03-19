@@ -6,6 +6,7 @@
   "homepage": "https://github.com/biw/nuts",
   "license": "Apache-2.0",
   "dependencies": {
+    "@types/jest": "^26.0.21",
     "analytics-node": "2.1.1",
     "basic-auth": "1.0.3",
     "body-parser": "1.12.3",
@@ -64,7 +65,7 @@
   "scripts": {
     "start": "node bin/web.js",
     "dev": "export $(grep -v '^#' .env | xargs) && nodemon bin/web.js",
-    "test": "export $(grep -v '^#' .env | xargs) && mocha --bail --reporter spec --timeout 600000 ./__tests__/all.js",
+    "test": "export $(grep -v '^#' .env | xargs) && jest",
     "lint": "eslint bin lib test"
   }
 }
