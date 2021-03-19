@@ -66,6 +66,6 @@
     "start": "node bin/web.js",
     "dev": "export $(grep -v '^#' .env | xargs) && nodemon bin/web.js",
     "test": "export $(grep -v '^#' .env | xargs) && jest",
-    "lint": "eslint bin lib test"
+    "lint": "eslint bin lib __mocks__ __tests__"
   }
 }
