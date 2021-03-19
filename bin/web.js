@@ -27,7 +27,7 @@ var myNuts = nuts.Nuts({
   timeout: process.env.VERSIONS_TIMEOUT,
   cache: process.env.VERSIONS_CACHE,
   refreshSecret: process.env.GITHUB_SECRET,
-  proxyAssets: !Boolean(process.env.DONT_PROXY_ASSETS),
+  proxyAssets: process.env.DONT_PROXY_ASSETS !== "true",
 })
 
 // Control access to API
@@ -53,28 +53,14 @@ myNuts.before("api", function (access, next) {
 // Log download
 myNuts.before("download", function (download, next) {
   console.log(
-    "download",
-    download.platform.filename,
-    "for version",
-    download.version.tag,
-    "on channel",
-    download.version.channel,
-    "for",
-    download.platform.type,
+    `download ${download.platform.filename} for version ${download.version.tag} on channel ${download.version.channel} for ${download.platform.type}`,
   )
 
   next()
 })
 myNuts.after("download", function (download, next) {
   console.log(
-    "downloaded",
-    download.platform.filename,
-    "for version",
-    download.version.tag,
-    "on channel",
-    download.version.channel,
-    "for",
-    download.platform.type,
+    `downloaded ${download.platform.filename} for version ${download.version.tag} on channel ${download.version.channel} for ${download.platform.type}`,
   )
 
   // Track on segment if enabled
@@ -113,23 +99,22 @@ app.use(function (req, res, next) {
   res.status(404).send("Page not found")
 })
 app.use(function (err, req, res, next) {
-  var msg = err.message || err
-  var code = 500
+  const msg = err.message || err
 
   console.error(err.stack || err)
 
   // Return error
   res.format({
     "text/plain": function () {
-      res.status(code).send(msg)
+      res.status(500).send(msg)
     },
     "text/html": function () {
-      res.status(code).send(msg)
+      res.status(500).send(msg)
     },
     "application/json": function () {
-      res.status(code).send({
+      res.status(500).send({
         error: msg,
-        code: code,
+        code: 500,
       })
     },
   })
@@ -145,7 +130,7 @@ myNuts
         var host = server.address().address
         var port = server.address().port
 
-        console.log("Listening at http://%s:%s", host, port)
+        console.log(`Listening at http://${host}:${port}`)
       })
     },
     function (err) {

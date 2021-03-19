@@ -1,79 +1,70 @@
-require("should")
 var platforms = require("../lib/utils/platforms")
 var useragent = require("express-useragent")
 
 describe("Platforms", function () {
   describe("Detect", function () {
-    it("should detect osx_64", function () {
-      platforms
-        .detect("myapp-v0.25.1-darwin-x64.zip")
-        .should.be.exactly(platforms.OSX_64)
-      platforms.detect("myapp.dmg").should.be.exactly(platforms.OSX_64)
+    test("should detect osx_64", function () {
+      expect(platforms.detect("myapp-v0.25.1-darwin-x64.zip")).toEqual(
+        platforms.OSX_64,
+      )
+      expect(platforms.detect("myapp.dmg")).toEqual(platforms.OSX_64)
     })
 
-    it("should detect windows_32", function () {
-      platforms
-        .detect("myapp-v0.25.1-win32-ia32.zip")
-        .should.be.exactly(platforms.WINDOWS_32)
-      platforms
-        .detect("atom-1.0.9-delta.nupkg")
-        .should.be.exactly(platforms.WINDOWS_32)
-      platforms.detect("RELEASES").should.be.exactly(platforms.WINDOWS_32)
+    test("should detect windows_32", function () {
+      expect(platforms.detect("myapp-v0.25.1-win32-ia32.zip")).toEqual(
+        platforms.WINDOWS_32,
+      )
+      expect(platforms.detect("atom-1.0.9-delta.nupkg")).toEqual(
+        platforms.WINDOWS_32,
+      )
+      expect(platforms.detect("RELEASES")).toEqual(platforms.WINDOWS_32)
     })
 
-    it("should detect windows_64", function () {
-      platforms.detect("MyApp-x64.exe").should.be.exactly(platforms.WINDOWS_64)
+    test("should detect windows_64", function () {
+      expect(platforms.detect("MyApp-x64.exe")).toEqual(platforms.WINDOWS_64)
       var chrome = useragent.parse(
         "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36",
       )
-      platforms
-        .detectPlatformByUserAgent(chrome)
-        .should.be.exactly(platforms.WINDOWS_64)
+      expect(platforms.detectPlatformByUserAgent(chrome)).toEqual(
+        platforms.WINDOWS_64,
+      )
       var edge = useragent.parse(
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586",
       )
-      platforms
-        .detectPlatformByUserAgent(edge)
-        .should.be.exactly(platforms.WINDOWS_64)
+      expect(platforms.detectPlatformByUserAgent(edge)).toEqual(
+        platforms.WINDOWS_64,
+      )
     })
 
-    it("should detect linux", function () {
-      platforms
-        .detect("enterprise-amd64.tar.gz")
-        .should.be.exactly(platforms.LINUX_64)
-      platforms
-        .detect("enterprise-amd64.tgz")
-        .should.be.exactly(platforms.LINUX_64)
-      platforms
-        .detect("enterprise-ia32.tar.gz")
-        .should.be.exactly(platforms.LINUX_32)
-      platforms
-        .detect("enterprise-ia32.tgz")
-        .should.be.exactly(platforms.LINUX_32)
+    test("should detect linux", function () {
+      expect(platforms.detect("enterprise-amd64.tar.gz")).toEqual(
+        platforms.LINUX_64,
+      )
+      expect(platforms.detect("enterprise-amd64.tgz")).toEqual(
+        platforms.LINUX_64,
+      )
+      expect(platforms.detect("enterprise-ia32.tar.gz")).toEqual(
+        platforms.LINUX_32,
+      )
+      expect(platforms.detect("enterprise-ia32.tgz")).toEqual(
+        platforms.LINUX_32,
+      )
     })
 
-    it("should detect debian_32", function () {
-      platforms
-        .detect("atom-ia32.deb")
-        .should.be.exactly(platforms.LINUX_DEB_32)
+    test("should detect debian_32", function () {
+      expect(platforms.detect("atom-ia32.deb")).toEqual(platforms.LINUX_DEB_32)
     })
 
-    it("should detect debian_64", function () {
-      platforms
-        .detect("atom-amd64.deb")
-        .should.be.exactly(platforms.LINUX_DEB_64)
+    test("should detect debian_64", function () {
+      expect(platforms.detect("atom-amd64.deb")).toEqual(platforms.LINUX_DEB_64)
     })
 
-    it("should detect rpm_32", function () {
-      platforms
-        .detect("atom-ia32.rpm")
-        .should.be.exactly(platforms.LINUX_RPM_32)
+    test("should detect rpm_32", function () {
+      expect(platforms.detect("atom-ia32.rpm")).toEqual(platforms.LINUX_RPM_32)
     })
 
-    it("should detect rpm_64", function () {
-      platforms
-        .detect("atom-amd64.rpm")
-        .should.be.exactly(platforms.LINUX_RPM_64)
+    test("should detect rpm_64", function () {
+      expect(platforms.detect("atom-amd64.rpm")).toEqual(platforms.LINUX_RPM_64)
     })
   })
 
@@ -187,47 +178,47 @@ describe("Platforms", function () {
       ],
     }
 
-    it("should resolve to best platform", function () {
-      platforms
-        .resolve(version, "osx")
-        .filename.should.be.exactly("test-3.3.1-darwin.dmg")
-      platforms
-        .resolve(version, "win32")
-        .filename.should.be.exactly("AtomSetup.exe")
-      platforms
-        .resolve(version, "linux_64")
-        .filename.should.be.exactly("atom-amd64.tar.gz")
-      platforms
-        .resolve(version, "linux_32")
-        .filename.should.be.exactly("atom-ia32.tar.gz")
-      platforms
-        .resolve(version, "linux_rpm_32")
-        .filename.should.be.exactly("atom-ia32.rpm")
-      platforms
-        .resolve(version, "linux_rpm_64")
-        .filename.should.be.exactly("atom-amd64.rpm")
-      platforms
-        .resolve(version, "linux_deb_32")
-        .filename.should.be.exactly("atom-ia32.deb")
-      platforms
-        .resolve(version, "linux_deb_64")
-        .filename.should.be.exactly("atom-amd64.deb")
+    test("should resolve to best platform", function () {
+      expect(platforms.resolve(version, "osx").filename).toEqual(
+        "test-3.3.1-darwin.dmg",
+      )
+      expect(platforms.resolve(version, "win32").filename).toEqual(
+        "AtomSetup.exe",
+      )
+      expect(platforms.resolve(version, "linux_64").filename).toEqual(
+        "atom-amd64.tar.gz",
+      )
+      expect(platforms.resolve(version, "linux_32").filename).toEqual(
+        "atom-ia32.tar.gz",
+      )
+      expect(platforms.resolve(version, "linux_rpm_32").filename).toEqual(
+        "atom-ia32.rpm",
+      )
+      expect(platforms.resolve(version, "linux_rpm_64").filename).toEqual(
+        "atom-amd64.rpm",
+      )
+      expect(platforms.resolve(version, "linux_deb_32").filename).toEqual(
+        "atom-ia32.deb",
+      )
+      expect(platforms.resolve(version, "linux_deb_64").filename).toEqual(
+        "atom-amd64.deb",
+      )
     })
 
-    it("should resolve to best platform with a preferred filetype", function () {
-      platforms
-        .resolve(version, "osx", {
+    test("should resolve to best platform with a preferred filetype", function () {
+      expect(
+        platforms.resolve(version, "osx", {
           filePreference: [".zip"],
-        })
-        .filename.should.be.exactly("test-3.3.1-darwin-x64.zip")
+        }).filename,
+      ).toEqual("test-3.3.1-darwin-x64.zip")
     })
 
-    it("should resolve to best platform with a wanted filetype", function () {
-      platforms
-        .resolve(version, "osx", {
+    test("should resolve to best platform with a wanted filetype", function () {
+      expect(
+        platforms.resolve(version, "osx", {
           wanted: ".zip",
-        })
-        .filename.should.be.exactly("test-3.3.1-darwin-x64.zip")
+        }).filename,
+      ).toEqual("test-3.3.1-darwin-x64.zip")
     })
   })
 })
