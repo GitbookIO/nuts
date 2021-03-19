@@ -22,7 +22,7 @@ commands:
         steps:
             - run:
                   name: yarn test
-                  command: yarn test
+                  command: yarn test:ci
     install_and_test:
         steps:
             - install_and_cache_yarn_linux
