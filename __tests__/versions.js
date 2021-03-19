@@ -1,31 +1,31 @@
-var versions = require("./testing").nuts.versions
+const versions = require("./testing").nuts.versions
 
-describe("Versions", function () {
-  describe(".list", function () {
-    test("should list all versions", function () {
-      return versions.list().then(function (out) {
+describe("Versions", () => {
+  describe(".list", () => {
+    test("should list all versions", () => {
+      return versions.list().then((out) => {
         expect(out.length).toEqual(7)
       })
     })
   })
 
-  describe(".filter", function () {
-    test("should filter correctly by tag name", function () {
-      return versions.filter({ tag: ">=0.9.0" }).then(function (out) {
+  describe(".filter", () => {
+    test("should filter correctly by tag name", () => {
+      return versions.filter({ tag: ">=0.9.0" }).then((out) => {
         expect(out.length).toEqual(2)
         expect(out[0].tag).toEqual("1.0.0")
         expect(out[1].tag).toEqual("0.9.0")
       })
     })
 
-    test("should filter correctly by tag name (stripChannel)", function () {
+    test("should filter correctly by tag name (stripChannel)", () => {
       return versions
         .filter({
           tag: ">=1.0.0",
           channel: "*",
           stripChannel: true,
         })
-        .then(function (out) {
+        .then((out) => {
           expect(out.length).toEqual(3)
         })
     })

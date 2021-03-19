@@ -1,23 +1,23 @@
-var express = require("express")
-var uuid = require("uuid")
-var basicAuth = require("basic-auth")
-var Analytics = require("analytics-node")
-var nuts = require("../")
+const express = require("express")
+const uuid = require("uuid")
+const basicAuth = require("basic-auth")
+const Analytics = require("analytics-node")
+const nuts = require("../")
 
-var app = express()
+const app = express()
 
-var apiAuth = {
+const apiAuth = {
   username: process.env.API_USERNAME,
   password: process.env.API_PASSWORD,
 }
 
-var analytics = undefined
-var downloadEvent = process.env.ANALYTICS_EVENT_DOWNLOAD || "download"
+let analytics = undefined
+const downloadEvent = process.env.ANALYTICS_EVENT_DOWNLOAD || "download"
 if (process.env.ANALYTICS_TOKEN) {
   analytics = new Analytics(process.env.ANALYTICS_TOKEN)
 }
 
-var myNuts = nuts.Nuts({
+const myNuts = nuts.Nuts({
   routePrefix: process.env.ROUTE_PREFIX,
   repository: process.env.GITHUB_REPO,
   token: process.env.GITHUB_TOKEN,
@@ -31,14 +31,14 @@ var myNuts = nuts.Nuts({
 })
 
 // Control access to API
-myNuts.before("api", function (access, next) {
+myNuts.before("api", (access, next) => {
   if (!apiAuth.username) return next()
 
-  function unauthorized() {
+  const unauthorized = () => {
     next(new Error("Invalid username/password for API"))
   }
 
-  var user = basicAuth(access.req)
+  const user = basicAuth(access.req)
   if (!user || !user.name || !user.pass) {
     return unauthorized()
   }
@@ -51,21 +51,21 @@ myNuts.before("api", function (access, next) {
 })
 
 // Log download
-myNuts.before("download", function (download, next) {
+myNuts.before("download", (download, next) => {
   console.log(
     `download ${download.platform.filename} for version ${download.version.tag} on channel ${download.version.channel} for ${download.platform.type}`,
   )
 
   next()
 })
-myNuts.after("download", function (download, next) {
+myNuts.after("download", (download, next) => {
   console.log(
     `downloaded ${download.platform.filename} for version ${download.version.tag} on channel ${download.version.channel} for ${download.platform.type}`,
   )
 
   // Track on segment if enabled
   if (analytics) {
-    var userId = download.req.query.user
+    const userId = download.req.query.user
 
     analytics.track({
       event: downloadEvent,
@@ -85,7 +85,7 @@ myNuts.after("download", function (download, next) {
 
 if (process.env.TRUST_PROXY) {
   try {
-    var trustProxyObject = JSON.parse(process.env.TRUST_PROXY)
+    const trustProxyObject = JSON.parse(process.env.TRUST_PROXY)
     app.set("trust proxy", trustProxyObject)
   } catch (e) {
     app.set("trust proxy", process.env.TRUST_PROXY)
@@ -95,10 +95,10 @@ if (process.env.TRUST_PROXY) {
 app.use(myNuts.router)
 
 // Error handling
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.status(404).send("Page not found")
 })
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   const msg = err.message || err
 
   console.error(err.stack || err)
@@ -122,18 +122,16 @@ app.use(function (err, req, res, next) {
 
 myNuts
   .init()
-
   // Start the HTTP server
   .then(
-    function () {
-      var server = app.listen(process.env.PORT || 5000, function () {
-        var host = server.address().address
-        var port = server.address().port
-
+    () => {
+      const server = app.listen(process.env.PORT || 5000, () => {
+        const host = server.address().address
+        const port = server.address().port
         console.log(`Listening at http://${host}:${port}`)
       })
     },
-    function (err) {
+    (err) => {
       console.log(err.stack || err)
       process.exit(1)
     },
