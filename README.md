@@ -1,5 +1,10 @@
 # Nuts
 
+[![Build Status][build-badge]][build]
+[![Apache License 2.0][license-badge]][license]
+[![updated last][updated-at-badge]][repo-link]
+[![twitter][twitter-badge]][twitter]
+
 ## Project Goals
 This is a clone of [GitbookIO/nuts](https://github.com/GitbookIO/nuts) with the goal of staying updated and matained. As of 2021-03-17, all PRs open in [GitbookIO/nuts](https://github.com/GitbookIO/nuts) have been open in this repo. All PRs will be reviewed, updated, then merged (or closed with an explanation). This project may add or removed features in an independent manner from [GitbookIO/nuts](https://github.com/GitbookIO/nuts) with the overarching goal of making it easy to deploy assets behind a proxy.
 
@@ -54,3 +59,13 @@ This server provides an endpoint for [Squirrel auto-updater](https://github.com/
 
 ## License
 **Apache License 2.0** copyleft [GitbookIO/nuts](https://github.com/GitbookIO/nuts/blob/master/LICENSE)
+
+
+[build-badge]: https://img.shields.io/circleci/build/github/biw/nuts/main?style=flat-square
+[build]: https://app.circleci.com/pipelines/github/biw/nuts
+[license-badge]: https://img.shields.io/badge/license-Apache%202-blue?style=flat-square
+[license]: https://github.com/biw/nuts/blob/main/LICENSE
+[twitter-badge]: https://img.shields.io/twitter/follow/biwills.svg?style=flat-square&logo=twitter&label=Follow
+[twitter]: https://twitter.com/biwills
+[updated-at-badge]: https://img.shields.io/github/last-commit/biw/nuts?style=flat-square
+[repo-link]: https://github.com/biw/nuts
