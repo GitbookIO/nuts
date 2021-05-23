@@ -2,7 +2,7 @@
 
 Pecans is a simple (and smart) application to serve desktop-application releases.
 
-![Schema](./docs/schema.png)
+![Schema](./docs/sequence.png)
 
 It uses GitHub as a backend to store assets, and it can easily be deployed to Heroku as a stateless service. It supports GitHub private repositories (useful to store releases of a closed-source application available on GitHub).
 

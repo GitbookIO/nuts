@@ -14,7 +14,7 @@ $ npm install pecans-serve
 
 ```js
 var express = require('express');
-var Pecans = require('pecans-serve').Pecans;
+var Pecans = require('@dopry/pecans').Pecans;
 
 var app = express();
 

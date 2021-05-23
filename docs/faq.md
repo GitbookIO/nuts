@@ -2,11 +2,11 @@
 
 ### Can I use a private repository?
 
-Pecans is designed to proxy assets from a private repository to the public.
+Pecans is designed to shares release assets from a private repository to the public.
 
 ### Can I use a GitHub Enterprise / GitLab repository?
 
-Since version 3.0.0, Pecans can works with [other backends](https://github.com/dopry/pecans/tree/master/lib/backends) than GitHub. Feel free to post a Pull-Request to implement such backends!
+Pecans can works with [other backends](https://github.com/dopry/pecans/tree/master/lib/backends) than GitHub. Feel free to post a Pull-Request to implement such backends!
 
 ### Can I deploy it to Heroku?
 
