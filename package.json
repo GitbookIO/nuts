@@ -1,14 +1,15 @@
 {
   "name": "@dopry/pecans",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Server to make GitHub releases (private) available to download with Squirrel support",
   "engines": {
     "node": ">=12"
   },
   "main": "./lib/index.js",
-  "homepage": "https://github.com/dopry/pecan",
+  "homepage": "https://github.com/dopry/pecans",
   "license": "Apache-2.0",
   "dependencies": {
+    "@semantic-release/changelog": "^5.0.1",
     "analytics-node": "1.2.2",
     "basic-auth": "1.0.3",
     "body-parser": "1.12.3",
@@ -31,11 +32,13 @@
     "uuid": "2.0.1"
   },
   "devDependencies": {
+    "@semantic-release/git": "^9.0.0",
     "mocha": "^8.4.0",
+    "semantic-release": "^17.4.3",
     "should": "7.0.4"
   },
   "bugs": {
-    "url": "https://github.com/dopry/pecan/issues"
+    "url": "https://github.com/dopry/pecans/issues"
   },
   "authors": [
     {
@@ -48,10 +51,40 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dopry/pecan.git"
+    "url": "https://github.com/dopry/pecans.git"
   },
   "scripts": {
     "start": "node bin/web.js",
-    "test": "mocha --reporter list"
+    "test": "mocha --reporter list",
+    "semantic-release": "semantic-release"
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGES.md"
+        }
+      ],
+      [
+        "@semantic-release/npm"
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGES.md",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
   }
 }
