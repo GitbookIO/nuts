@@ -1,9 +1,9 @@
 {
-  "name": "nuts-serve",
-  "version": "3.1.1",
+  "name": "@dopry/pecan",
+  "version": "0.0.1",
   "description": "Server to make GitHub releases (private) available to download with Squirrel support",
   "main": "./lib/index.js",
-  "homepage": "https://github.com/GitbookIO/nuts",
+  "homepage": "https://github.com/dopry/pecan",
   "license": "Apache-2.0",
   "dependencies": {
     "analytics-node": "1.2.2",
@@ -31,17 +31,20 @@
     "should": "7.0.4"
   },
   "bugs": {
-    "url": "https://github.com/GitbookIO/nuts/issues"
+    "url": "https://github.com/dopry/pecan/issues"
   },
   "authors": [
     {
       "name": "Samy Pesse",
       "email": "samypesse@gmail.com"
+    },
+    {
+      "name": "Darrel O'Pry"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/GitbookIO/nuts.git"
+    "url": "https://github.com/dopry/pecan.git"
   },
   "scripts": {
     "start": "node bin/web.js",

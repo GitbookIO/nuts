@@ -1,6 +1,6 @@
 # Download Urls
 
-Nuts provides urls to access releases assets. These assets are cached on the disk.
+Pecans provides urls to access releases assets. These assets are cached on the disk.
 
 * Latest version for detected platform: `http://download.myapp.com/download`
 * Latest version for specific platform: `http://download.myapp.com/download/osx`
@@ -11,7 +11,7 @@ Nuts provides urls to access releases assets. These assets are cached on the dis
 
 # Atom Feed Urls
 
-Nuts provides different Atom feeds:
+Pecans provides different Atom feeds:
 
 * All versions: `http://download.myapp.com/feed/channel/all.atom`
 * Versions in specific channel: `http://download.myapp.com/feed/channel/:channel.atom`

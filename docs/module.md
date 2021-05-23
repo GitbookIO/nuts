@@ -1,30 +1,30 @@
-# Use Nuts as a node module
+# Use Pecans as a node module
 
-Nuts can be integrated into a Node.JS application as a node module. Using the middleware, you can add custom authentication on downloads or analytics for downloads counts.
+Pecans can be integrated into a Node.JS application as a node module. Using the middleware, you can add custom authentication on downloads or analytics for downloads counts.
 
 #### Installation
 
-Nuts can be installed as a local dependency using `npm`:
+Pecans can be installed as a local dependency using `npm`:
 
 ```
-$ npm install nuts-serve
+$ npm install pecans-serve
 ```
 
 #### Usage
 
 ```js
 var express = require('express');
-var Nuts = require('nuts-serve').Nuts;
+var Pecans = require('pecans-serve').Pecans;
 
 var app = express();
 
-var nuts = Nuts({
+var pecans = Pecans({
     // GitHub configuration
     repository: "Me/MyRepo",
     token: "my_api_token"
 });
 
-app.use('/myapp', nuts.router);
+app.use('/myapp', pecans.router);
 app.listen(4000);
 ```
 
@@ -41,19 +41,19 @@ GitHub specific configuration:
 
 ### Hooks
 
-You can bind interceptors (i.e. hooks) to certain asynchronous actions using `nuts.before(fn)` and `nuts.after(fn)`:
+You can bind interceptors (i.e. hooks) to certain asynchronous actions using `pecans.before(fn)` and `pecans.after(fn)`:
 
 - `download`: When an user is downloading a version
 - `api`: when an user is accessing the API
 
 ```js
-nuts.before('download', function(download, next) {
+pecans.before('download', function(download, next) {
     console.log('user is downloading', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
 
     next();
 });
 
-nuts.after('download', function(download, next) {
+pecans.after('download', function(download, next) {
     console.log('user downloaded', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
 
     next();

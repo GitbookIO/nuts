@@ -1,8 +1,8 @@
 {
-    "name": "Nuts",
+    "name": "Pecans",
     "description": "Open source releases/downloads server with auto-updater",
-    "repository": "https://github.com/GitbookIO/nuts",
-    "website": "https://github.com/GitbookIO/nuts",
+    "repository": "https://github.com/dopry/pecans",
+    "website": "https://github.com/dopry/pecans",
     "keywords": ["releases", "download", "github", "squirrel", "desktop"],
     "env": {
         "GITHUB_REPO": {

@@ -1,19 +1,19 @@
 # Deployment
 
-Nuts can be easily be deployed to a state-less server or PaaS. It only uses the disk as a cache for assets.
+Pecans can be easily be deployed to a state-less server or PaaS. It only uses the disk as a cache for assets.
 
 ### On Heroku:
 
-Heroku is the perfect solution to host a Nuts instance.
+Heroku is the perfect solution to host a Pecans instance.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ### With docker
 
-Nuts can also be run as a Docker container:
+Pecans can also be run as a Docker container:
 
 ```
-docker run -it -p 80:80 -e GITHUB_REPO=username/repo gitbook/nuts
+docker run -it -p 80:80 -e GITHUB_REPO=username/repo gitbook/pecans
 ```
 
 ### On your own server:

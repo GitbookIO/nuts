@@ -1,12 +1,12 @@
 # Upload assets for releases
 
-Nuts uses GitHub Releases and assets to serve the right file to the right user.
+Pecans uses GitHub Releases and assets to serve the right file to the right user.
 
 See GitHub guides: [About Releases](https://help.github.com/articles/about-releases/) & [Creating Releases](https://help.github.com/articles/creating-releases/).
 
 ### Naming
 
-Nuts uses some filename/extension conventions to serve the correct asset to a specific request:
+Pecans uses some filename/extension conventions to serve the correct asset to a specific request:
 
 The platform/OS will be detected from the filename:
 

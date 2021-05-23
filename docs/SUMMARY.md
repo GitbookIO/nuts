@@ -5,7 +5,7 @@
 
 ---
 
-- [Deploy Nuts](deploy.md)
+- [Deploy Pecans](deploy.md)
 - [Upload Releases](assets.md)
 - [Setup GitHub webhook](github.md)
 - [Mac / OS X Auto-Updater](update-osx.md)

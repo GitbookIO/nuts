@@ -1,9 +1,9 @@
 var pkg = require('./package.json');
 
 module.exports = {
-    // Documentation for Nuts is stored under "docs"
+    // Documentation for Pecans is stored under "docs"
     root: './docs',
-    title: 'Nuts Documentation',
+    title: 'Pecans Documentation',
 
     // Enforce use of GitBook v3
     gitbook: '>=3.0.0-pre.0',
@@ -18,7 +18,7 @@ module.exports = {
 
     pluginsConfig: {
         sitemap: {
-            hostname: 'https://nuts.gitbook.com'
+            hostname: 'https://pecans.gitbook.com'
         }
     }
 };

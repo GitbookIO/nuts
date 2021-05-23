@@ -1,6 +1,6 @@
-# Nuts
+# Pecans
 
-Nuts is a simple (and smart) application to serve desktop-application releases.
+Pecans is a simple (and smart) application to serve desktop-application releases.
 
 ![Schema](./docs/schema.png)
 
@@ -33,13 +33,13 @@ It uses GitHub as a backend to store assets, and it can easily be deployed to He
 
 #### Deploy it / Start it
 
-[Follow our guide to deploy Nuts](https://nuts.gitbook.com/deploy.html).
+[Follow our guide to deploy Pecans](https://pecans.gitbook.com/deploy.html).
 
 
 #### Auto-updater / Squirrel
 
-This server provides an endpoint for [Squirrel auto-updater](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md), it supports both [OS X](https://nuts.gitbook.com/update-osx.html) and [Windows](https://nuts.gitbook.com/update-windows.html).
+This server provides an endpoint for [Squirrel auto-updater](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md), it supports both [OS X](https://pecans.gitbook.com/update-osx.html) and [Windows](https://pecans.gitbook.com/update-windows.html).
 
 #### Documentation
 
-[Check out the documentation](https://nuts.gitbook.com) for more details.
+[Check out the documentation](https://pecans.gitbook.com) for more details.

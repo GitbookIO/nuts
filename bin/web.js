@@ -2,7 +2,7 @@ var express = require('express');
 var uuid = require('uuid');
 var basicAuth = require('basic-auth');
 var Analytics = require('analytics-node');
-var nuts = require('../');
+var pecans = require('../');
 
 var app = express();
 
@@ -17,7 +17,7 @@ if (process.env.ANALYTICS_TOKEN) {
     analytics = new Analytics(process.env.ANALYTICS_TOKEN);
 }
 
-var myNuts = nuts.Nuts({
+var myPecans = pecans.Pecans({
     repository: process.env.GITHUB_REPO,
     token: process.env.GITHUB_TOKEN,
     endpoint: process.env.GITHUB_ENDPOINT,
@@ -30,7 +30,7 @@ var myNuts = nuts.Nuts({
 });
 
 // Control access to API
-myNuts.before('api', function(access, next) {
+myPecans.before('api', function(access, next) {
     if (!apiAuth.username) return next();
 
     function unauthorized() {
@@ -50,12 +50,12 @@ myNuts.before('api', function(access, next) {
 });
 
 // Log download
-myNuts.before('download', function(download, next) {
+myPecans.before('download', function(download, next) {
     console.log('download', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
 
     next();
 });
-myNuts.after('download', function(download, next) {
+myPecans.after('download', function(download, next) {
     console.log('downloaded', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
 
     // Track on segment if enabled
@@ -70,7 +70,7 @@ myNuts.after('download', function(download, next) {
                 version: download.version.tag,
                 channel: download.version.channel,
                 platform: download.platform.type,
-                os: nuts.platforms.toType(download.platform.type)
+                os: pecans.platforms.toType(download.platform.type)
             }
         });
     }
@@ -88,7 +88,7 @@ if (process.env.TRUST_PROXY) {
     }
 }
 
-app.use(myNuts.router);
+app.use(myPecans.router);
 
 // Error handling
 app.use(function(req, res, next) {
@@ -117,7 +117,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-myNuts.init()
+myPecans.init()
 
 // Start the HTTP server
 .then(function() {

@@ -1,12 +1,12 @@
-# Nuts FAQ
+# Pecans FAQ
 
 ### Can I use a private repository?
 
-Nuts is designed to proxy assets from a private repository to the public.
+Pecans is designed to proxy assets from a private repository to the public.
 
 ### Can I use a GitHub Enterprise / GitLab repository?
 
-Since version 3.0.0, Nuts can works with [other backends](https://github.com/GitbookIO/nuts/tree/master/lib/backends) than GitHub. Feel free to post a Pull-Request to implement such backends!
+Since version 3.0.0, Pecans can works with [other backends](https://github.com/dopry/pecans/tree/master/lib/backends) than GitHub. Feel free to post a Pull-Request to implement such backends!
 
 ### Can I deploy it to Heroku?
 
@@ -18,7 +18,7 @@ Since version 3.0.0, Nuts can works with [other backends](https://github.com/Git
 
 ### What file should I upload to the GitHub release?
 
-Nuts can detect the type of file from its filename, there is no strict policy on file naming. Nuts tries to respect the filename/extension conventions for the different platforms. request:)
+Pecans can detect the type of file from its filename, there is no strict policy on file naming. Pecans tries to respect the filename/extension conventions for the different platforms. request:)
 
 - Windows: `.exe`, `.nupkg` etc
 - Linux: `.deb`, `.tar.gz`, etc
@@ -28,8 +28,8 @@ By default releases are tagged as 32-bits (except for OSX), but 64-bits will als
 
 ### How should I tag my releases?
 
-Nuts requires applications to follow [SemVer](http://semver.org). And even if you're not using Nuts, you should follow it!
+Pecans requires applications to follow [SemVer](http://semver.org). And even if you're not using Pecans, you should follow it!
 
-### Does nuts provide an Atom feed of versions?
+### Does pecans provide an Atom feed of versions?
 
 Yes, [See Feed URLS](./urls.md).
