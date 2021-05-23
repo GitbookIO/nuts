@@ -13,12 +13,14 @@ This url requires different parameters to return a correct version: `version` an
 For example with Electron's `auto-updater` module:
 
 ```js
-var app = require('app');
-var os = require('os');
-var autoUpdater = require('auto-updater');
+const app = require("app");
+const os = require("os");
+const autoUpdater = require("auto-updater");
 
-var platform = os.platform() + '_' + os.arch();
-var version = app.getVersion();
+const platform = os.platform() + "_" + os.arch();
+const version = app.getVersion();
 
-autoUpdater.setFeedURL('http://download.myapp.com/update/'+platform+'/'+version);
+autoUpdater.setFeedURL(
+  "http://download.myapp.com/update/" + platform + "/" + version
+);
 ```

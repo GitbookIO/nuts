@@ -13,18 +13,18 @@ $ npm install pecans-serve
 #### Usage
 
 ```js
-var express = require('express');
-var Pecans = require('@dopry/pecans').Pecans;
+const express = require("express");
+const Pecans = require("@dopry/pecans").Pecans;
 
-var app = express();
+const app = express();
 
-var pecans = Pecans({
-    // GitHub configuration
-    repository: "Me/MyRepo",
-    token: "my_api_token"
+const pecans = new Pecans({
+  // GitHub configuration
+  repository: "Me/MyRepo",
+  token: "my_api_token",
 });
 
-app.use('/myapp', pecans.router);
+app.use("/myapp", pecans.router);
 app.listen(4000);
 ```
 
@@ -47,17 +47,33 @@ You can bind interceptors (i.e. hooks) to certain asynchronous actions using `pe
 - `api`: when an user is accessing the API
 
 ```js
-pecans.before('download', function(download, next) {
-    console.log('user is downloading', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+pecans.before("download", function (download, next) {
+  console.log(
+    "user is downloading",
+    download.platform.filename,
+    "for version",
+    download.version.tag,
+    "on channel",
+    download.version.channel,
+    "for",
+    download.platform.type
+  );
 
-    next();
+  next();
 });
 
-pecans.after('download', function(download, next) {
-    console.log('user downloaded', download.platform.filename, "for version", download.version.tag, "on channel", download.version.channel, "for", download.platform.type);
+pecans.after("download", function (download, next) {
+  console.log(
+    "user downloaded",
+    download.platform.filename,
+    "for version",
+    download.version.tag,
+    "on channel",
+    download.version.channel,
+    "for",
+    download.platform.type
+  );
 
-    next();
+  next();
 });
 ```
-
-
