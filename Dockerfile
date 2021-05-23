@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:5.8.0
+FROM mhart/alpine-node:14
 
 # Switch to /app
 WORKDIR /app

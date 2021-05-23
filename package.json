@@ -2,6 +2,9 @@
   "name": "@dopry/pecan",
   "version": "0.0.1",
   "description": "Server to make GitHub releases (private) available to download with Squirrel support",
+  "engines": {
+    "node": ">=12"
+  },
   "main": "./lib/index.js",
   "homepage": "https://github.com/dopry/pecan",
   "license": "Apache-2.0",
@@ -27,7 +30,7 @@
     "uuid": "2.0.1"
   },
   "devDependencies": {
-    "mocha": "1.18.2",
+    "mocha": "^8.4.0",
     "should": "7.0.4"
   },
   "bugs": {
