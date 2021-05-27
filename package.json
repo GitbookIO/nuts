@@ -27,7 +27,7 @@
     "strip-bom": "2.0.0",
     "understudy": "4.1.0",
     "urljoin.js": "0.1.0",
-    "uuid": "2.0.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@semantic-release/git": "^9.0.0",

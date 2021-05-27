@@ -1,5 +1,5 @@
 const express = require("express");
-const uuid = require("uuid");
+const { v4: uuid } = require("uuid");
 const basicAuth = require("basic-auth");
 const Analytics = require("analytics-node");
 const { Pecans } = require("../");
