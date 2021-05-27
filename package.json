@@ -20,7 +20,7 @@
     "github-webhook-handler": "0.5.0",
     "lru-diskcache": "1.1.1",
     "node-fetch": "^2.6.1",
-    "octocat": "0.10.2",
+    "octocat": "^1.2.1",
     "request": "^2.88.2",
     "semver": "^7.3.5",
     "stream-res": "1.0.1",
