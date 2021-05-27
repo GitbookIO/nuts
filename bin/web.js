@@ -2,7 +2,7 @@ const express = require("express");
 const { v4: uuid } = require("uuid");
 const basicAuth = require("basic-auth");
 const Analytics = require("analytics-node");
-const { Pecans } = require("../");
+const { Pecans, platforms } = require("../");
 
 const app = express();
 
@@ -11,11 +11,10 @@ const apiAuth = {
   password: process.env.API_PASSWORD,
 };
 
-const analytics = undefined;
+const segment = process.env.SEGMENT_TOKEN
+  ? new Analytics(process.env.SEGMENT_TOKEN)
+  : undefined;
 const downloadEvent = process.env.ANALYTICS_EVENT_DOWNLOAD || "download";
-if (process.env.ANALYTICS_TOKEN) {
-  analytics = new Analytics(process.env.ANALYTICS_TOKEN);
-}
 
 const opts = {
   repository: process.env.GITHUB_REPO,
@@ -82,18 +81,18 @@ myPecans.after("download", function (download, next) {
   );
 
   // Track on segment if enabled
-  if (analytics) {
+  if (segment) {
     const userId = download.req.query.user;
-
-    analytics.track({
+    // console.log(segment.track, download);
+    segment.track({
       event: downloadEvent,
-      anonymousId: userId ? null : uuid.v4(),
+      anonymousId: userId ? null : uuid(),
       userId: userId,
       properties: {
         version: download.version.tag,
         channel: download.version.channel,
         platform: download.platform.type,
-        os: Pecans.platforms.toType(download.platform.type),
+        os: platforms.toType(download.platform.type),
       },
     });
   }
