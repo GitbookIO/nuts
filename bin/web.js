@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 import basicAuth from "basic-auth";
 import Analytics from "analytics-node";
 import { Pecans, platforms } from "../lib/index.js";
+import { platformToType } from "../lib/utils/platforms.js";
 
 const app = express();
 
@@ -95,7 +96,7 @@ myPecans.after("download", function (download, next) {
         version: download.version.tag,
         channel: download.version.channel,
         platform: download.platform.type,
-        os: platforms.toType(download.platform.type),
+        os: platformToType(download.platform.type),
       },
     });
   }
