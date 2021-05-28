@@ -11,9 +11,9 @@
   "dependencies": {
     "@semantic-release/changelog": "^5.0.1",
     "analytics-node": "^4.0.1",
-    "basic-auth": "1.0.3",
+    "basic-auth": "^2.0.1",
     "body-parser": "^1.19.0",
-    "destroy": "1.0.3",
+    "destroy": "^1.0.4",
     "express": "^4.13.3",
     "express-useragent": "0.1.9",
     "feed": "^0.3.0",
