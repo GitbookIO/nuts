@@ -33,7 +33,7 @@
     "feed": "^4.2.2",
     "mocha": "^8.4.0",
     "semantic-release": "^17.4.3",
-    "should": "7.0.4"
+    "should": "^13.2.3"
   },
   "bugs": {
     "url": "https://github.com/dopry/pecans/issues"
