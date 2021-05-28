@@ -15,8 +15,7 @@
     "body-parser": "^1.19.0",
     "destroy": "^1.0.4",
     "express": "^4.13.3",
-    "express-useragent": "0.1.9",
-    "feed": "^0.3.0",
+    "express-useragent": "^1.0.15",
     "github-webhook-handler": "0.5.0",
     "lru-diskcache": "1.1.1",
     "node-fetch": "^2.6.1",
@@ -31,6 +30,7 @@
   },
   "devDependencies": {
     "@semantic-release/git": "^9.0.0",
+    "feed": "^4.2.2",
     "mocha": "^8.4.0",
     "semantic-release": "^17.4.3",
     "should": "7.0.4"
