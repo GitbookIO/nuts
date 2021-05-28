@@ -1,3 +1,13 @@
+## [1.1.1](https://github.com/dopry/pecans/compare/v1.1.0...v1.1.1) (2021-05-28)
+
+
+### Bug Fixes
+
+* analytics platform resolution ([c61162b](https://github.com/dopry/pecans/commit/c61162b6b6a8b470bc38623698783d8e06155b52))
+* include package-lock.json in release commit ([cd39ea2](https://github.com/dopry/pecans/commit/cd39ea2b37d61a56beedeb7d1cb57b06d40b36cb))
+* remove debug logging ([06b4ee2](https://github.com/dopry/pecans/commit/06b4ee210c527b88c8390c8cd23ec001ffccc1fa))
+* version filtering without platform ([dda6cc0](https://github.com/dopry/pecans/commit/dda6cc08701f5067f32c6d7b13e13496b8b1ff5e))
+
 # [1.1.0](https://github.com/dopry/pecans/compare/v1.0.0...v1.1.0) (2021-05-28)
 
 
