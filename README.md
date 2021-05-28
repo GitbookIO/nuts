@@ -15,26 +15,26 @@ It uses GitHub as a backend to store assets, and it can easily be deployed to He
 
 #### Features
 
-- :sparkles: Store assets on GitHub releases
-- :sparkles: Proxy releases from private repositories to your users
-- :sparkles: Simple but powerful download urls
+- Store assets on GitHub releases
+- Proxy releases from private repositories to your users
+- Simple but powerful download urls
   - `/download/latest`
   - `/download/latest/:os`
   - `/download/:version`
   - `/download/:version/:os`
   - `/download/channel/:channel`
   - `/download/channel/:channel/:os`
-- :sparkles: Support pre-release channels (`beta`, `alpha`, ...)
-- :sparkles: Auto-updates with [Squirrel](https://github.com/Squirrel)
+- Support pre-release channels (`beta`, `alpha`, ...)
+- Auto-updates with [Squirrel](https://github.com/Squirrel)
   - For Mac using `/update?version=<x.x.x>&platform=osx`
   - For Windows using Squirrel.Windows and Nugets packages
-- :sparkles: Private API
-- :sparkles: Use it as a middleware: add custom analytics, authentication
-- :sparkles: Serve the perfect type of assets: `.zip` for Squirrel.Mac, `.nupkg` for Squirrel.Windows, `.dmg` for Mac users, ...
-- :sparkles: Release notes endpoint
+- Private API
+- Use it as a middleware: add custom analytics, authentication
+- Serve the perfect type of assets: `.zip` for Squirrel.Mac, `.nupkg` for Squirrel.Windows, `.dmg` for Mac users, ...
+- Release notes endpoint
   - `/notes/:version`
-- :sparkles: Up-to-date releases (GitHub webhooks)
-- :sparkles: Atom/RSS feeds for versions/channels
+- Up-to-date releases (GitHub webhooks)
+- Atom/RSS feeds for versions/channels
 
 #### Deploy it / Start it
 
