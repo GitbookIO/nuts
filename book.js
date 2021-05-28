@@ -1,24 +1,24 @@
-var pkg = require('./package.json');
+import pkg from "./package.json";
 
-module.exports = {
-    // Documentation for Pecans is stored under "docs"
-    root: './docs',
-    title: 'Pecans Documentation',
+export const config = {
+  // Documentation for Pecans is stored under "docs"
+  root: "./docs",
+  title: "Pecans Documentation",
 
-    // Enforce use of GitBook v3
-    gitbook: '>=3.0.0-pre.0',
+  // Enforce use of GitBook v3
+  gitbook: ">=3.0.0-pre.0",
 
-    // Use the "official" theme
-    plugins: ['theme-official', 'sitemap'],
-    theme: 'official',
+  // Use the "official" theme
+  plugins: ["theme-official", "sitemap"],
+  theme: "official",
 
-    variables: {
-        version: pkg.version
+  variables: {
+    version: pkg.version,
+  },
+
+  pluginsConfig: {
+    sitemap: {
+      hostname: "https://pecans.darrelopry.com/",
     },
-
-    pluginsConfig: {
-        sitemap: {
-            hostname: 'https://pecans.gitbook.com'
-        }
-    }
+  },
 };

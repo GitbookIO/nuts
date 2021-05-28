@@ -38,12 +38,12 @@ It uses GitHub as a backend to store assets, and it can easily be deployed to He
 
 #### Deploy it / Start it
 
-[Follow our guide to deploy Pecans](https://pecans.gitbook.com/deploy.html).
+[Follow our guide to deploy Pecans](https://pecans.darrelopry.com/v/main/docs/deploy).
 
 #### Auto-updater / Squirrel
 
-This server provides an endpoint for [Squirrel auto-updater](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md), it supports both [OS X](https://pecans.gitbook.com/update-osx.html) and [Windows](https://pecans.gitbook.com/update-windows.html).
+This server provides an endpoint for [Squirrel auto-updater](https://github.com/atom/electron/blob/master/docs/api/auto-updater.md), it supports both [OS X](https://pecans.darrelopry.com/v/main/docs/update-osx) and [Windows](https://pecans.darrelopry.com/v/main/docs/update-windows).
 
 #### Documentation
 
-[Check out the documentation](https://pecans.gitbook.com) for more details.
+[Check out the documentation](https://pecans.darrelopry.com/v/main/docs) for more details.
