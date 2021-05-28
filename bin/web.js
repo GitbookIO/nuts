@@ -1,8 +1,8 @@
-const express = require("express");
-const { v4: uuid } = require("uuid");
-const basicAuth = require("basic-auth");
-const Analytics = require("analytics-node");
-const { Pecans, platforms } = require("../");
+import express from "express";
+import { v4 as uuid } from "uuid";
+import basicAuth from "basic-auth";
+import Analytics from "analytics-node";
+import { Pecans, platforms } from "../lib/index.js";
 
 const app = express();
 

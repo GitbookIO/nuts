@@ -6,6 +6,7 @@
     "node": ">=12"
   },
   "main": "./lib/index.js",
+  "type": "module",
   "homepage": "https://github.com/dopry/pecans",
   "license": "Apache-2.0",
   "dependencies": {
@@ -23,7 +24,7 @@
     "request": "^2.88.2",
     "semver": "^7.3.5",
     "stream-res": "1.0.1",
-    "strip-bom": "2.0.0",
+    "strip-bom": "^5.0.0",
     "understudy": "4.1.0",
     "urljoin.js": "0.1.0",
     "uuid": "^8.3.2"
