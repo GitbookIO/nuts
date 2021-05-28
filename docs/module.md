@@ -34,6 +34,7 @@ app.listen(4000);
 - `cacheMax`: (int) Max size of the cache (default is 500MB)
 - `cacheMaxAge`: (int) Maximum age in ms (default is 1 hour)
 - `preFetch`: (boolean) Pre-fetch list of releases at startup (default is true)
+- `basePath`: (string) path segment added between the host and the app path to support proxies that rewrite the path without telling express.
 
 GitHub specific configuration:
 

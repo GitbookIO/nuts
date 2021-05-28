@@ -26,6 +26,9 @@ const opts = {
   cache: process.env.VERSIONS_CACHE,
   refreshSecret: process.env.GITHUB_SECRET,
   proxyAssets: !Boolean(process.env.DONT_PROXY_ASSETS),
+  // base path to inject between host and relative path. use for D.O. app service where
+  // app is proxied through / api and the original url isn't passed by the proxy.
+  basePath: process.env.BASE_PATH,
 };
 
 // strip undefined from opts
