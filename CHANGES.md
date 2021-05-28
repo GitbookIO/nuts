@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/dopry/pecans/compare/v1.1.1...v1.1.2) (2021-05-28)
+
+
+### Bug Fixes
+
+* feed miscategorized as devDependency ([9995025](https://github.com/dopry/pecans/commit/9995025d5f542da97a9b72f10af5c5c507f624d2))
+
 ## [1.1.1](https://github.com/dopry/pecans/compare/v1.1.0...v1.1.1) (2021-05-28)
 
 
