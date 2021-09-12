@@ -14,6 +14,13 @@ describe("Platforms", function () {
       detectPlatform("myapp.dmg").should.be.exactly(platforms.OSX_64);
     });
 
+    it("should detect osx_arm64", function () {
+      detectPlatform("myapp-v0.25.1-darwin-arm64.zip").should.be.exactly(
+        platforms.OSX_ARM64
+      );
+      detectPlatform("myapp-arm.dmg").should.be.exactly(platforms.OSX_ARM64);
+    });
+
     it("should detect windows_32", function () {
       detectPlatform("myapp-v0.25.1-win32-ia32.zip").should.be.exactly(
         platforms.WINDOWS_32
@@ -75,6 +82,20 @@ describe("Platforms", function () {
           filename: "test-3.3.1-darwin-x64.zip",
           download_url:
             "https://api.github.com/repos/test/test2/releases/assets/793869",
+          download_count: 0,
+        },
+        {
+          type: "osx_arm64",
+          filename: "test-3.3.1-darwin-arm64.dmg",
+          download_url:
+            "https://api.github.com/repos/test/test2/releases/assets/793898",
+          download_count: 2,
+        },
+        {
+          type: "osx_arm64",
+          filename: "test-3.3.1-darwin-arm64.zip",
+          download_url:
+            "https://api.github.com/repos/test/test2/releases/assets/793899",
           download_count: 0,
         },
         {
@@ -174,6 +195,9 @@ describe("Platforms", function () {
       resolveForVersion(version, "osx").filename.should.be.exactly(
         "test-3.3.1-darwin.dmg"
       );
+      resolveForVersion(version, "osx_arm64").filename.should.be.exactly(
+        "test-3.3.1-darwin-arm64.dmg"
+      );
       resolveForVersion(version, "win32").filename.should.be.exactly(
         "AtomSetup.exe"
       );
@@ -208,5 +232,18 @@ describe("Platforms", function () {
         wanted: ".zip",
       }).filename.should.be.exactly("test-3.3.1-darwin-x64.zip");
     });
+
+    it("should resolve to best platform with a preferred filetype", function () {
+      resolveForVersion(version, "osx_arm64", {
+        filePreference: [".zip"],
+      }).filename.should.be.exactly("test-3.3.1-darwin-arm64.zip");
+    });
+
+    it("should resolve to best platform with a wanted filetype", function () {
+      resolveForVersion(version, "osx_arm64", {
+        wanted: ".zip",
+      }).filename.should.be.exactly("test-3.3.1-darwin-arm64.zip");
+    });
+
   });
 });
