@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/dopry/pecans/compare/v1.1.2...v1.2.0) (2021-11-15)
+
+
+### Features
+
+* Apple Silicon support ([e97a659](https://github.com/dopry/pecans/commit/e97a65915e91595fcbbaa3b3f9059acec8fbd507))
+
 ## [1.1.2](https://github.com/dopry/pecans/compare/v1.1.1...v1.1.2) (2021-05-28)
 
 

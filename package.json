@@ -1,6 +1,6 @@
 {
   "name": "@dopry/pecans",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Server to make GitHub releases (private) available to download with Squirrel support",
   "engines": {
     "node": ">=12"
