@@ -1,10 +1,9 @@
 sequenceDiagram
-    participant User as User or App
-    participant Pecans
-    participant Github
-    participant Developer
+participant User as User or App
+participant Pecans
+participant Github
+participant Developer
 
-    
     Developer-->>Github: Publish Release
     User-->>+Pecans: Request Latest Release
     Pecans-->>Github: Request Releases
@@ -16,7 +15,3 @@ sequenceDiagram
       Github-->>Pecans: Send  Download
       Pecans-->>User: Send Protected Asset Url
     end
-    
-
-    
-            

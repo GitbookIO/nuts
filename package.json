@@ -5,45 +5,44 @@
   "engines": {
     "node": ">=12"
   },
-  "main": "./lib/index.js",
-  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
   "homepage": "https://github.com/dopry/pecans",
   "license": "Apache-2.0",
   "dependencies": {
-    "@semantic-release/changelog": "^5.0.1",
-    "analytics-node": "^4.0.1",
-    "basic-auth": "^2.0.1",
+    "@octokit/rest": "^18.12.0",
+    "@octokit/webhooks": "^9.24.0",
     "body-parser": "^1.19.0",
     "destroy": "^1.0.4",
-    "express": "^4.13.3",
+    "express": "^4.18.1",
     "express-useragent": "^1.0.15",
-    "feed": "^4.2.2",
-    "github-webhook-handler": "^1.0.0",
-    "lru-diskcache": "1.1.1",
-    "node-fetch": "^2.6.1",
-    "octocat": "^1.2.1",
-    "request": "^2.88.2",
-    "semver": "^7.3.5",
-    "stream-res": "1.0.1",
-    "strip-bom": "^5.0.0",
-    "understudy": "4.1.0",
+    "node-fetch": "^2.6.7",
+    "semver": "^7.3.7",
     "urljoin.js": "^1.0.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@semantic-release/git": "^9.0.0",
-    "mocha": "^8.4.0",
-    "semantic-release": "^17.4.3",
-    "should": "^13.2.3"
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@types/destroy": "^1.0.0",
+    "@types/expect": "^24.3.0",
+    "@types/express": "^4.17.13",
+    "@types/express-useragent": "^1.0.2",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^17.0.34",
+    "@types/node-fetch": "^2.6.1",
+    "@types/semver": "^7.3.9",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.16",
+    "semantic-release": "^19.0.2",
+    "should": "^13.2.3",
+    "ts-mocha": "^10.0.0",
+    "typescript": "^4.6.4"
   },
   "bugs": {
     "url": "https://github.com/dopry/pecans/issues"
   },
   "authors": [
-    {
-      "name": "Samy Pesse",
-      "email": "samypesse@gmail.com"
-    },
     {
       "name": "Darrel O'Pry"
     }
@@ -53,14 +52,17 @@
     "url": "https://github.com/dopry/pecans.git"
   },
   "scripts": {
-    "start": "node bin/web.js",
-    "test": "mocha --reporter list",
+    "build": "rm -fr dist/* && tsc -p tsconfig.mjs.json && tsc -p tsconfig.cjs.json && ./fixup.sh",
+    "dev": "nodemon -e ts,json --watch src --watch bin --exec \"npm start\"",
+    "start": "ts-node -P tsconfig.cjs.json bin/web.ts",
+    "test": "ts-mocha -p tsconfig.cjs.json --reporter list test/*.spec.* src/*.spec.* src/**/*.spec.*",
     "semantic-release": "semantic-release"
   },
   "release": {
     "branches": [
       "+([0-9])?(.{+([0-9]),x}).x",
-      "main"
+      "main",
+      "next"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",

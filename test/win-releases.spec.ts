@@ -4,7 +4,7 @@ import {
   toSemver,
   parseRELEASES,
   generateRELEASES,
-} from "../lib/utils/win-releases.js";
+} from "../src/utils/win-releases";
 
 describe("Windows RELEASES", function () {
   describe("Version Normalization", function () {
@@ -100,6 +100,8 @@ describe("Windows RELEASES", function () {
           app: "atom",
           size: 81272434,
           isDelta: false,
+          filename: "",
+          semver: "",
         },
       ]).should.be.exactly(
         "62E8BF432F29E8E08240910B85EDBF2D1A41EDF2 atom-1.0.0-full.nupkg 81272434"

@@ -31,3 +31,4 @@ node_modules
 docs/_book/
 
 /env.sh
+/dist/
