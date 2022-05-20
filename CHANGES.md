@@ -1,3 +1,15 @@
+# [2.0.0-next.1](https://github.com/dopry/pecans/compare/v1.2.0...v2.0.0-next.1) (2022-05-20)
+
+
+### Features
+
+* cjs and esm module distribution ([906e725](https://github.com/dopry/pecans/commit/906e7255e86df8b657edfe5dc9c42563534290d8))
+
+
+### BREAKING CHANGES
+
+* Configuration requires new arguments
+
 # [2.0.0](https://github.com/dopry/pecans/compare/v1.2.0...v2.0.0) (2022-05-20)
 
 
