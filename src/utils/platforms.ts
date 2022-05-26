@@ -1,3 +1,4 @@
+import { platform } from "os";
 import { filenameToArchitecture } from "./Architecture";
 import {
   filenameToOperatingSystem,
@@ -49,6 +50,38 @@ export const platforms: Record<string, Platform> = {
   WINDOWS_32: "windows_32",
   WINDOWS_64: "windows_64",
 };
+
+// legacy arch suffixes,
+// 32 = 32, ia32, i386
+// 64 = 64, x64, amd64
+// arm64 = arm64
+export const legacyPlatformMap: Record<string, Platform> = {
+  osx: platforms.OSX_64,
+  "osx-x64": platforms.OSX_64,
+  "osx-amd64": platforms.OSX_64,
+  "osx-arm64": platforms.OSX_ARM64,
+  darwin: platforms.OSX_64,
+  "darwin-x64": platforms.OSX_64,
+  "darwin-amd64": platforms.OSX_64,
+  "darwin-arm64": platforms.OSX_ARM64,
+  mac: platforms.OSX_64,
+  "mac-amd64": platforms.OSX_64,
+  "mac-x64": platforms.OSX_64,
+  "mac-arm64": platforms.OSX_ARM64,
+  win: platforms.WINDOWS_64,
+  "win-32": platforms.WINDOWS_32,
+  "win-i386": platforms.WINDOWS_32,
+  "win-ia32": platforms.WINDOWS_32,
+  "win-x64": platforms.WINDOWS_64,
+  "win-amd64": platforms.WINDOWS_64,
+  win32: platforms.WINDOWS_32,
+  "win32-x64": platforms.WINDOWS_64,
+  "win32-amd64": platforms.WINDOWS_64,
+};
+
+export function mapLegacyPlatform(platform: string): string {
+  return legacyPlatformMap[platform] || platform;
+}
 
 export function isPlatform(obj: unknown): obj is Platform {
   return typeof obj == "string" && PLATFORMS.includes(obj as Platform);

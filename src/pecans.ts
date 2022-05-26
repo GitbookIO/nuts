@@ -19,6 +19,7 @@ import {
   isOperatingSystem,
   OPERATING_SYSTEMS,
   isValidArchForOS,
+  mapLegacyPlatform,
 } from "./utils/";
 import { resolveReleaseAssetForVersion } from "./utils/resolveForVersion";
 import { parseRELEASES, generateRELEASES } from "./utils/win-releases";
@@ -433,7 +434,8 @@ export class Pecans extends EventEmitter {
       const _platform = filename
         ? filenameToPlatform(filename)
         : req.params.platform || getPlatformFromUserAgent(req);
-      const platform = validateReqQueryPlatform(_platform);
+      const mapped_platform = mapLegacyPlatform(_platform);
+      const platform = validateReqQueryPlatform(mapped_platform);
       if (platform == undefined) {
         throw new Error("Platform is required");
       }
@@ -500,7 +502,8 @@ export class Pecans extends EventEmitter {
       if (!req.params.platform)
         throw new Error('Requires "platform" parameter');
 
-      const platform = validateReqQueryPlatform(req.params.platform);
+      const mapped_platform = mapLegacyPlatform(req.params.platform);
+      const platform = validateReqQueryPlatform(mapped_platform);
       const tag = req.params.version;
 
       const fullUrl = this.getFullUrl(req);
