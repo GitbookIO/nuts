@@ -365,14 +365,12 @@ export class Pecans extends EventEmitter {
     return this.cacheId + Math.ceil(Date.now() / this.opts.cacheMaxAge);
   }
 
+  getBaseUrl(req: Request) {
+    return req.protocol + "://" + req.get("host") + this.opts.basePath;
+  }
+
   getFullUrl(req: Request) {
-    return (
-      req.protocol +
-      "://" +
-      req.get("host") +
-      this.opts.basePath +
-      req.originalUrl
-    );
+    return this.getBaseUrl(req) + req.originalUrl;
   }
 
   async getReleases(): Promise<PecansReleases> {
@@ -434,7 +432,7 @@ export class Pecans extends EventEmitter {
       const _platform = filename
         ? filenameToPlatform(filename)
         : req.params.platform || getPlatformFromUserAgent(req);
-      const mapped_platform = mapLegacyPlatform(_platform);
+      const mapped_platform = mapLegacyPlatform(_platform || "");
       const platform = validateReqQueryPlatform(mapped_platform);
       if (platform == undefined) {
         throw new Error("Platform is required");
@@ -506,8 +504,7 @@ export class Pecans extends EventEmitter {
       const platform = validateReqQueryPlatform(mapped_platform);
       const tag = req.params.version;
 
-      const fullUrl = this.getFullUrl(req);
-      const channel = req.params.channel || "*";
+      const channel = req.params.channel || "stable";
       const filetype = req.query.filetype ? req.query.filetype : "zip";
 
       let versions = await this.versions.filter({
@@ -522,8 +519,9 @@ export class Pecans extends EventEmitter {
       const notesSlice =
         versions.length === 1 ? [latest] : versions.slice(0, -1);
       const releaseNotes = mergeReleaseNotes(notesSlice, false);
-      const gitFilePath = channel === "*" ? "/../../../" : "/../../../../../";
-      const url = `${fullUrl}/${gitFilePath}/download/version/${latest.version}/${platform}?filetype=${filetype}`;
+      const url = `${this.getBaseUrl(req)}/download/version/${
+        latest.version
+      }/${platform}?filetype=${filetype}`;
 
       res.status(200).send({
         url,
@@ -569,13 +567,7 @@ export class Pecans extends EventEmitter {
       releases = releases
         // Change filename to use download proxy
         .map((entry) => {
-          const gitFilePath =
-            channel === "*" ? "../../../../" : "../../../../../../";
-          entry.filename = urljoin(
-            fullUrl,
-            gitFilePath,
-            "/download/" + entry.semver + "/" + entry.filename
-          );
+          entry.filename = this.getBaseUrl(req) + "/dl/" + entry.filename;
           return entry;
         });
 
