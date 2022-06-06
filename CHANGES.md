@@ -1,3 +1,11 @@
+# [2.0.0-next.2](https://github.com/dopry/pecans/compare/v2.0.0-next.1...v2.0.0-next.2) (2022-06-06)
+
+
+### Bug Fixes
+
+* better legacy support ([e2a9e4d](https://github.com/dopry/pecans/commit/e2a9e4dc2beb1ed4ec4eb216359deca158262673))
+* download urls on update endpoint ([df4f68c](https://github.com/dopry/pecans/commit/df4f68cf0f8e4e988fb70ca4ab8b112e90ccb748))
+
 # [2.0.0-next.1](https://github.com/dopry/pecans/compare/v1.2.0...v2.0.0-next.1) (2022-05-20)
 
 
