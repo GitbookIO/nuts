@@ -56,8 +56,8 @@
   },
   "scripts": {
     "build": "rm -fr dist/* && tsc -p tsconfig.mjs.json && tsc -p tsconfig.cjs.json && ./fixup.sh",
-    "dev": "nodemon -e ts,json --watch src --watch bin --exec \"npm start\"",
-    "start": "ts-node -P tsconfig.cjs.json bin/web.ts",
+    "dev": "nodemon -e ts,json --watch src --exec \"npm start\"",
+    "start": "ts-node -P tsconfig.cjs.json src/index.ts",
     "test": "TS_NODE_PROJECT=tsconfig.cjs.json mocha",
     "semantic-release": "semantic-release"
   },
