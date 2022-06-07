@@ -5,6 +5,9 @@
   "engines": {
     "node": ">=12"
   },
+  "files": [
+    "dist/"
+  ],
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
   "homepage": "https://github.com/dopry/pecans",
