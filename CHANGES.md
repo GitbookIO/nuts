@@ -1,3 +1,10 @@
+# [2.0.0-next.4](https://github.com/dopry/pecans/compare/v2.0.0-next.3...v2.0.0-next.4) (2022-06-07)
+
+
+### Bug Fixes
+
+* only include dist in pkg ([d8fdb25](https://github.com/dopry/pecans/commit/d8fdb256503b85c9898a4736f2cac5750d153606))
+
 # [2.0.0-next.3](https://github.com/dopry/pecans/compare/v2.0.0-next.2...v2.0.0-next.3) (2022-06-07)
 
 
