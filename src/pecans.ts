@@ -540,8 +540,11 @@ export class Pecans extends EventEmitter {
   async handleUpdateWin(req: Request, res: Response, next: NextFunction) {
     try {
       const fullUrl = this.getFullUrl(req);
-      const platform = req.params.platform || "windows_32";
-      const channel = req.params.channel || "*";
+      const _platform = req.params.platform || "windows_32";
+      const mapped_platform = mapLegacyPlatform(_platform || "");
+      const platform = validateReqQueryPlatform(mapped_platform);
+
+      const channel = req.params.channel || "stable";
       const tag = req.params.version;
 
       if (!isPlatform(platform)) {
