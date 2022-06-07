@@ -1,3 +1,15 @@
+# [2.0.0-next.3](https://github.com/dopry/pecans/compare/v2.0.0-next.2...v2.0.0-next.3) (2022-06-07)
+
+
+### Bug Fixes
+
+* platform mapping on RELEASES endpoint ([5aede2a](https://github.com/dopry/pecans/commit/5aede2ad2c50f856d53b99872a7c00a3231b9fd1))
+
+
+### Features
+
+* automated builds ([d8792b1](https://github.com/dopry/pecans/commit/d8792b1eb3609c1b91a90dd43021ba87298adb96))
+
 # [2.0.0-next.2](https://github.com/dopry/pecans/compare/v2.0.0-next.1...v2.0.0-next.2) (2022-06-06)
 
 
