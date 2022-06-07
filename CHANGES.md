@@ -1,3 +1,10 @@
+# [2.0.0-next.5](https://github.com/dopry/pecans/compare/v2.0.0-next.4...v2.0.0-next.5) (2022-06-07)
+
+
+### Features
+
+* make pecans package executable ([558b3fd](https://github.com/dopry/pecans/commit/558b3fdea2315c26efd5f743681843f825cf5c22))
+
 # [2.0.0-next.4](https://github.com/dopry/pecans/compare/v2.0.0-next.3...v2.0.0-next.4) (2022-06-07)
 
 
