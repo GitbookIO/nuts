@@ -1,0 +1,25 @@
+name: Test, Build, and Release
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  test_build_release:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+      - run: npm ci
+      # - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - run: npm run semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          # same as GH token since we're using the GH npm repo.
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

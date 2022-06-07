@@ -2,7 +2,7 @@ import path from "path";
 import { PecansReleaseDTO } from "../models";
 import { OperatingSystem } from "./OperatingSystem";
 import { PackageFormat } from "./PackageFormat";
-import { Platform } from "./Platforms";
+import { Platform } from "./platforms";
 import {
   getSupportedExt,
   SupportedFileExtension,

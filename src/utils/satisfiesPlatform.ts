@@ -1,5 +1,5 @@
 import { PecansRelease } from "../models";
-import { Platform } from "./Platforms";
+import { Platform } from "./platforms";
 
 // Satisfies a platform
 
