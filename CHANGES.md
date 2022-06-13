@@ -1,3 +1,10 @@
+# [2.0.0-next.6](https://github.com/dopry/pecans/compare/v2.0.0-next.5...v2.0.0-next.6) (2022-06-13)
+
+
+### Bug Fixes
+
+* do not include draft releases ([15cf4c8](https://github.com/dopry/pecans/commit/15cf4c87d169eae054968337701e2d39a205a5fa))
+
 # [2.0.0-next.5](https://github.com/dopry/pecans/compare/v2.0.0-next.4...v2.0.0-next.5) (2022-06-07)
 
 
