@@ -29,3 +29,6 @@ node_modules
 .env
 
 docs/_book/
+
+.vscode/
+package-lock.json
