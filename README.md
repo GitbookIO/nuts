@@ -3,6 +3,7 @@
 Nuts++ is a fork of [nuts](https://github.com/GitbookIO/nuts). It's simple (and smart) application to serve desktop-application releases.
 
 :exclamation: This version supports assets for the `darwin` platform and the arch `x64` and `arm64`.
+
 :exclamation: When you call `/update/<platform>/<version>`, in the version add the architecture, for instance `darwin-arm64`.
 
 
