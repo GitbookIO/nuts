@@ -12,17 +12,17 @@ commands:
                       - dependencies-linux-root-
             - run:
                   name: yarn ➡ install
-                  command: yarn
+                  command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
             - save_cache:
                   name: save cache
-                  paths:
-                      - ~/repo/node_modules
                   key: dependencies-linux-root-{{ checksum "yarn.lock" }}
+                  paths:
+                      - ~/.cache/yarn
     run_all_tests:
         steps:
             - run:
                   name: yarn test
-                  command: yarn test
+                  command: yarn test:ci
     install_and_test:
         steps:
             - install_and_cache_yarn_linux
@@ -30,36 +30,45 @@ commands:
 
 # based on https://github.com/nodejs/Release schedule
 jobs:
-    node_10:
+    Node v10:
         docker:
             - image: circleci/node:10
         steps:
             - install_and_test
-    node_12:
+    Node v12:
         docker:
             - image: circleci/node:12
         steps:
             - install_and_test
-    node_13:
-        docker:
-            - image: circleci/node:13
-        steps:
-            - install_and_test
-    node_14:
+    Node v14:
         docker:
             - image: circleci/node:14
         steps:
             - install_and_test
-    node_15:
+    Node v14_16:
+        docker:
+            - image: circleci/node:14.16.0
+        steps:
+            - install_and_test
+    Node v15:
         docker:
             - image: circleci/node:15
         steps:
             - install_and_test
+    Linting:
+        docker:
+            - image: circleci/node:14.16.0
+        steps:
+            - install_and_cache_yarn_linux
+            - run:
+                  name: yarn lint
+                  command: CI=true yarn lint
 workflows:
     main:
         jobs:
-            - node_10
-            - node_12
-            - node_13
-            - node_14
-            - node_15
+            - Linting
+            - Node v10
+            - Node v12
+            - Node v14
+            - Node v14_16
+            - Node v15

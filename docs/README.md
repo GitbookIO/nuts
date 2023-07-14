@@ -14,7 +14,7 @@ There are questions that are asked quite often, [check this out before creating 
 
 ### Help and Support
 
-We're always happy to help out with any questions you might have. You can ask a question or signal an issue on [GitHub](https://github.com/GitbookIO/nuts/issues).
+We're always happy to help out with any questions you might have. You can ask a question or signal an issue on [GitHub](https://github.com/biw/nuts/issues).
 
 ### Guides
 
@@ -28,6 +28,6 @@ We've created a few guides to help you getting started:
 - [Debug API](api.md)
 - [Use it as a Node.js middleware](module.md)
 
-----
+---
 
 Using Nuts for your application? [Add it to the list](using-it.md).
