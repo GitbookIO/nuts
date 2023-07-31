@@ -13,8 +13,8 @@
   "homepage": "https://github.com/dopry/pecans",
   "license": "Apache-2.0",
   "dependencies": {
-    "@octokit/rest": "^18.12.0",
-    "@octokit/webhooks": "^9.24.0",
+    "@octokit/rest": "^20.0.1",
+    "@octokit/webhooks": "^12.0.3",
     "body-parser": "^1.19.0",
     "destroy": "^1.0.4",
     "express": "^4.18.1",
