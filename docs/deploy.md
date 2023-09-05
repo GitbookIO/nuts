@@ -1,6 +1,6 @@
 # Deployment
 
-Nuts can be easily be deployed to a state-less server or PaaS. It only uses the disk as a cache for assets.
+Nuts can easily be deployed to a state-less server or PaaS. It only uses the disk as a cache for assets.
 
 ### On Heroku:
 
@@ -24,11 +24,11 @@ Install dependencies using:
 $ npm install
 ```
 
-This service requires to be configured using environment variables:
+The service requires configuration using environment variables:
 
 ```
 # Set the port for the service
-$ export PORT=6000
+$ export PORT=5000
 
 # Access token for the GitHub API (requires permissions to access the repository)
 # If the repository is public you do not need to provide an access token

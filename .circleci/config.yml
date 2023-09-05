@@ -1,0 +1,74 @@
+version: 2.1
+
+commands:
+    install_and_cache_yarn_linux:
+        steps:
+            - checkout
+            - restore_cache:
+                  name: restore cache ➡ root
+                  keys:
+                      - dependencies-linux-root-{{ checksum "yarn.lock" }}
+                      # fallback to using the latest cache if no exact match is found
+                      - dependencies-linux-root-
+            - run:
+                  name: yarn ➡ install
+                  command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+            - save_cache:
+                  name: save cache
+                  key: dependencies-linux-root-{{ checksum "yarn.lock" }}
+                  paths:
+                      - ~/.cache/yarn
+    run_all_tests:
+        steps:
+            - run:
+                  name: yarn test
+                  command: yarn test:ci
+    install_and_test:
+        steps:
+            - install_and_cache_yarn_linux
+            - run_all_tests
+
+# based on https://github.com/nodejs/Release schedule
+jobs:
+    Node v10:
+        docker:
+            - image: circleci/node:10
+        steps:
+            - install_and_test
+    Node v12:
+        docker:
+            - image: circleci/node:12
+        steps:
+            - install_and_test
+    Node v14:
+        docker:
+            - image: circleci/node:14
+        steps:
+            - install_and_test
+    Node v14_16:
+        docker:
+            - image: circleci/node:14.16.0
+        steps:
+            - install_and_test
+    Node v15:
+        docker:
+            - image: circleci/node:15
+        steps:
+            - install_and_test
+    Linting:
+        docker:
+            - image: circleci/node:14.16.0
+        steps:
+            - install_and_cache_yarn_linux
+            - run:
+                  name: yarn lint
+                  command: CI=true yarn lint
+workflows:
+    main:
+        jobs:
+            - Linting
+            - Node v10
+            - Node v12
+            - Node v14
+            - Node v14_16
+            - Node v15

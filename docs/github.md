@@ -14,6 +14,8 @@ http://download.myapp.com/refresh
 
 Where download.myapp.com, is the URL of your Nuts server.
 
+Content-type should be `application/json`
+
 It'll refresh versions cache everytime you update a release on GitHub.
 
 ### Secret
