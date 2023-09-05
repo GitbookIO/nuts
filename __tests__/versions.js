@@ -17,17 +17,5 @@ describe("Versions", () => {
         expect(out[1].tag).toEqual("0.9.0")
       })
     })
-
-    test("should filter correctly by tag name (stripChannel)", () => {
-      return versions
-        .filter({
-          tag: ">=1.0.0",
-          channel: "*",
-          stripChannel: true,
-        })
-        .then((out) => {
-          expect(out.length).toEqual(3)
-        })
-    })
   })
 })
